@@ -1,0 +1,27 @@
+{
+	"nodes":[
+		{"id":"3cfa87d82892f0c4","type":"text","text":"verificacion\n\npuerto 80 http abierto  entro a la direccion ip","x":186,"y":-1060,"width":350,"height":180,"color":"1"},
+		{"id":"d4729d1f0e3e56cd","type":"text","text":"inspeccion de la web\n\nencuentro codigo encriptado busco en chatgpt y en cuentro msj *bebeaguaesbueno*","x":476,"y":-617,"width":371,"height":180,"color":"1"},
+		{"id":"3e7d6bc3babf355c","type":"text","text":"fuzzing web\n\ngobuster dir -u \"http://172.17.0.2/\" -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt","x":-1313,"y":-617,"width":803,"height":177,"color":"1"},
+		{"id":"4e167b2b566301bb","type":"text","text":"estenografia a imagen \n\nexiftool archivo.jpg\n\nbuscar mensaje secreto \n\nsteghide extract -sf archivo.jpg","x":-1262,"y":-205,"width":554,"height":245,"color":"1"},
+		{"id":"1b708fa5c071308c","type":"text","text":"probrar desde shell \n\nssh agua@172.17.0.2","x":-193,"y":-182,"width":323,"height":137,"color":"1"},
+		{"id":"93171bd87d4456af","type":"text","text":"sudo -l listo \n\nlos servicios que estan corriendo ","x":537,"y":-205,"width":250,"height":130,"color":"1"},
+		{"id":"ad219d0d14c9f326","type":"text","text":"nos damos privilegios comando \n\n! chmod u+s /bin/bash","x":-1172,"y":257,"width":375,"height":169,"color":"1"},
+		{"id":"79d343458226b523","type":"text","text":"salimos del bettercap y verificamos que somos root\n\n```\nwhoami\n```","x":-177,"y":520,"width":485,"height":207,"color":"1"},
+		{"id":"06d648222d4f9de7","type":"text","text":"enumeracion de puertos\n\nsudo nmap -p- --min-rate 5000 172.17.0.2 -Pn -n -oN escaneo\n\n esacneo mas produnfo\n \n `sudo nmap -p 22,80 -sCV 172.17.0.2 -Pn -n -oN escaneoSC`","x":-1210,"y":-1060,"width":700,"height":240,"color":"1"},
+		{"id":"7286e62786d5c6df","type":"text","text":"ejecuto el servicio \n\nsudo /usr/bin/bettercap\n","x":427,"y":121,"width":360,"height":143,"color":"1"},
+		{"id":"94d08580c3372662","type":"text","text":"comando help para ver las instrucciones de uso","x":-240,"y":127,"width":250,"height":130,"color":"1"}
+	],
+	"edges":[
+		{"id":"16a1052eb3a22101","fromNode":"06d648222d4f9de7","fromSide":"right","toNode":"3cfa87d82892f0c4","toSide":"left"},
+		{"id":"a28f408722846fcb","fromNode":"3cfa87d82892f0c4","fromSide":"right","toNode":"d4729d1f0e3e56cd","toSide":"top"},
+		{"id":"fa3a722dd9fc837f","fromNode":"d4729d1f0e3e56cd","fromSide":"left","toNode":"3e7d6bc3babf355c","toSide":"right"},
+		{"id":"2ed0be5ea46fa881","fromNode":"3e7d6bc3babf355c","fromSide":"right","toNode":"4e167b2b566301bb","toSide":"right"},
+		{"id":"73a00dfb51af59b0","fromNode":"4e167b2b566301bb","fromSide":"right","toNode":"1b708fa5c071308c","toSide":"right"},
+		{"id":"4f4bee8733229997","fromNode":"1b708fa5c071308c","fromSide":"right","toNode":"93171bd87d4456af","toSide":"left"},
+		{"id":"730d4b6b214885cd","fromNode":"93171bd87d4456af","fromSide":"right","toNode":"7286e62786d5c6df","toSide":"left"},
+		{"id":"ddc56d719923d60a","fromNode":"7286e62786d5c6df","fromSide":"right","toNode":"94d08580c3372662","toSide":"left"},
+		{"id":"ddce7248df37b35b","fromNode":"94d08580c3372662","fromSide":"bottom","toNode":"ad219d0d14c9f326","toSide":"left"},
+		{"id":"81476e9707612c7c","fromNode":"ad219d0d14c9f326","fromSide":"left","toNode":"79d343458226b523","toSide":"right"}
+	]
+}

