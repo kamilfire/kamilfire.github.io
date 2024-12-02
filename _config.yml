@@ -23,9 +23,9 @@ email: kamildeluq@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
  "Soy ingeniero de sistemas con una profunda pasión por la ciberseguridad. En este sitio, me dedico a resolver y compartir soluciones de máquinas CTF (Capture The Flag), desafiando mis habilidades y conocimientos en seguridad informática. Aquí encontrarás tutoriales, análisis detallados y recursos para mejorar en el mundo de la ciberseguridad. Si eres un entusiasta de los CTF o deseas aprender más sobre el hacking ético, este es el lugar perfecto para expandir tus conocimientos y retos."
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://kamilHack.github.io " # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://kamilfire.github.io " # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: twitter
-github_username:  kamilHack.github.io 
+github_username:  kamilfire.github.io 
 
 # Build settings
 theme: minima
