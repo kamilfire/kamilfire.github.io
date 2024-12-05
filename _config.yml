@@ -19,24 +19,12 @@
 # in the templates via {{ site.myvariable }}.
 
 # Información básica del sitio
-title: "Mi Sitio Hacker"
-description: "Un sitio con estilo hacker para pentesting y labs."
-url: "https://tusitio.com"
+title: "DockerLabs"
+description: ""
+url: "https://https://github.com/kamilfire/kamilfire.github.io"
 baseurl: ""
 
 <<<<<<< HEAD
-# Navegación dinámica
-nav:
-  - name: "Home"
-    url: "/"
-  - name: "Labs"
-    url: "/labs/"
-  - name: "About"
-    url: "/about/"
-  - name: "Contact"
-    url: "/contact/"
-  - name: "Blog"
-    url: "/blog/"
 
 # Configuración de colecciones (si es necesario)
 collections:
