@@ -1,10 +1,10 @@
 ---
-layout: page
-title:  "Breakmyshh!"
-date:    2024-11-30 14:14:17 -0509
-categories: Pentesting
+layout: post
+title: "BreakMySsh"
+date: 2024-12-3
+categories: [pentesting]
+image: /assets/images/imagen.jpg
 ---
-
 iniciamos las maquina 
 
 ![[Pasted image 20241121152326.png]](/imagenes/Pasted%20image%2020241121152326.png)

@@ -1,8 +1,9 @@
 ---
-layout: page
-title:  "Borazuwarahctf!"
-date:    2024-11-30 14:14:17 -0510
-categories: Pentesting
+layout: post
+title: "BorazuwarahCtf"
+date: 2024-12-3
+categories: [pentesting]
+image: /assets/images/imagen.jpg
 ---
 
 ejecutamos la maquina docker con los comandos

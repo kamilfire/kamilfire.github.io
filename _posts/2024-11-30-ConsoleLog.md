@@ -1,9 +1,11 @@
 ---
-layout: page
-title:  "ConsoleLog!"
-date:    2024-11-30 14:14:17 -0504
-categories: Pentesting
+layout: post
+title: "ConsoleLog"
+date: 2024-12-3
+categories: [pentesting]
+image: /assets/images/imagen.jpg
 ---
+
 ![[Pasted image 20241126164801.png]](/imagenes/Pasted%20image%2020241126164801.png)
 
 usamos nmap para explorar los puertos `nmap -p- --open -sCSV -vvv -Pn -n --min-rate 5000 172.17.0.2`

@@ -1,10 +1,13 @@
 ---
 layout: post
-title:  "Injection!"
-date:   2024-11-30 14:14:17 -0501
-categories: Pentesting
+title: "Injection"
+date: 2024-12-3
+categories: [pentesting]
+image: /assets/images/imagen.jpg
 ---
 
+
+Aquí va el contenido de tu entrada de blog. Puedes usar Markdown para formatear el texto, como en este ejemplo.
 
 
 

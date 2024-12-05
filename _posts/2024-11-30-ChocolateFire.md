@@ -1,8 +1,9 @@
 ---
-layout: page
-title:  "ChocolateFire!"
-date:    2024-11-30 14:14:17 -0507
-categories: Pentesting
+layout: post
+title: "ChocolateFire"
+date: 2024-12-3
+categories: [pentesting]
+image: /assets/images/imagen.jpg
 ---
 Corremos la maquina y escaneamos los puertos
 

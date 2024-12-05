@@ -1,9 +1,11 @@
 ---
-layout: page
-title:  "Chocolatelovers!"
-date:    2024-11-30 14:14:17 -0506
-categories: Pentesting
+layout: post
+title: "ChocolateLovers"
+date: 2024-12-3
+categories: [pentesting]
+image: /assets/images/imagen.jpg
 ---
+
 Corremos la maquina 
 
 ![[Pasted image 20241125164947.png]](/imagenes/Pasted%20image%2020241125164947.png)
