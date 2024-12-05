@@ -21,10 +21,8 @@
 # Información básica del sitio
 title: "DockerLabs"
 description: ""
-url: "https://https://github.com/kamilfire/kamilfire.github.io"
+url: "https://github.com/kamilfire/kamilfire.github.io"
 baseurl: ""
-
-<<<<<<< HEAD
 
 # Configuración de colecciones (si es necesario)
 collections:
@@ -32,25 +30,18 @@ collections:
     output: true
     permalink: /labs/:path/
 
-# Plugins de Jekyll (si necesitas alguno)
-=======
-# Build settings
-remote_theme: pages-themes/hacker@v0.2.0
-plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
->>>>>>> 5d37ff89a8dd67fd82099a4fda57ad77426b2f47
+# Plugins de Jekyll
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-remote-theme # Incluye este plugin si usas temas remotos
+
+# Tema visual
+remote_theme: pages-themes/hacker@v0.2.0
 
 # Markdown y sintaxis
 markdown: kramdown
 highlighter: rouge
-
-# Tema visual
-remote_theme: pages-themes/hacker@v0.2.0
-plugins:
-- jekyll-remote-theme # add this line to the plugins list if you already have one
 
 
 # Exclude from processing.
