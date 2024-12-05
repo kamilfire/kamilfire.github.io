@@ -24,6 +24,7 @@ description: "Un sitio con estilo hacker para pentesting y labs."
 url: "https://tusitio.com"
 baseurl: ""
 
+<<<<<<< HEAD
 # Navegación dinámica
 nav:
   - name: "Home"
@@ -44,6 +45,12 @@ collections:
     permalink: /labs/:path/
 
 # Plugins de Jekyll (si necesitas alguno)
+=======
+# Build settings
+remote_theme: pages-themes/hacker@v0.2.0
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
+>>>>>>> 5d37ff89a8dd67fd82099a4fda57ad77426b2f47
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
