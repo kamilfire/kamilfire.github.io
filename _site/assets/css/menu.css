@@ -1,0 +1,53 @@
+/* Contenedor principal de la lista */
+.file-list {
+  display: flex;
+  flex-direction: column; /* Alineación vertical */
+  justify-content: center; /* Centrar en el eje vertical */
+  align-items: center; /* Centrar en el eje horizontal */
+  gap: 10px; /* Espaciado entre elementos */
+  list-style: none; /* Eliminar viñetas */
+  padding: 0;
+  margin: 0;
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+/* Elementos individuales de la lista */
+.file-list li {
+  width: 90%; /* Ancho adaptable */
+  max-width: 600px; /* Máximo ancho */
+  padding: 15px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8); /* Fondo oscuro */
+  border: 1px solid #00ff00; /* Borde verde neón */
+  border-radius: 10px;
+  font-family: 'Courier New', monospace;
+  font-size: 1.2em; /* Tamaño del texto */
+  color: #00ff00; /* Texto verde */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efectos interactivos */
+.file-list li:hover {
+  transform: scale(1.05); /* Ampliación al pasar el ratón */
+  box-shadow: 0 5px 15px rgba(0, 255, 0, 0.5); /* Sombra verde */
+}
+
+/* Enlaces dentro de los elementos */
+.file-list a {
+  color: #00ff00;
+  text-decoration: none;
+  display: block; /* Hacer que el enlace ocupe todo el área del elemento */
+  width: 100%;
+  height: 100%;
+}
+
+.file-list a:hover {
+  color: #ffffff; /* Cambiar texto a blanco al pasar el ratón */
+}
+
+/* Responsividad */
+@media (max-width: 600px) {
+  .file-list li {
+    font-size: 1em; /* Reducir tamaño del texto en pantallas pequeñas */
+  }
+}

