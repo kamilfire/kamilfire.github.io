@@ -3,11 +3,11 @@
 source "https://rubygems.org"
 
 gemspec
-source "https://rubygems.org"
 
-gem "jekyll", "~> 4.3.0"
-gem "github-pages", group: :jekyll_plugins  # Asegúrate de incluir esta gema si usas GitHub Pages
-gem "jekyll-theme-chirpy"
+
+gem "jekyll", "~> 4.3.0"  # Versión de Jekyll
+gem "jekyll-theme-chirpy"  # Tema Chirpy
+gem "bundler", "~> 2.3.0"  # Bundler compatible
 
 
 gem "html-proofer", "~> 5.0", group: :test
