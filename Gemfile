@@ -6,7 +6,7 @@ gemspec
 
 
 gem "jekyll", "~> 4.3.0"  # Versión de Jekyll
-gem "jekyll-theme-chirpy"  # Tema Chirpy
+gem "jekyll-theme-chirpy", "~>7.2.2"  # Tema Chirpy
 gem "bundler", "~> 2.3.0"  # Bundler compatible
 
 
