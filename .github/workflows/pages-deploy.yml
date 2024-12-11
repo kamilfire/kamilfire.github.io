@@ -13,23 +13,33 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Setup Ruby
+    # Paso 1: Eliminar Gemfile.lock
+    - name: Remove Gemfile.lock
+      run: rm -f Gemfile.lock  # Elimina el archivo Gemfile.lock
+
+    # Paso 2: Configurar Ruby y Bundler
+    - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.1 # Ajusta la versión si es necesario
+        ruby-version: 3.1  # Asegúrate de que la versión de Ruby es la correcta
         bundler-cache: true
 
+    # Paso 3: Instalar dependencias
     - name: Install dependencies
       run: |
-        bundle install
+        gem install bundler
+        bundle install  # Instala las gemas y crea un nuevo Gemfile.lock
 
+    # Paso 4: Construir el sitio Jekyll
     - name: Build Jekyll site
       run: |
         JEKYLL_ENV=production bundle exec jekyll build
 
+    # Paso 5: Desplegar el sitio en GitHub Pages
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./_site
+
 
