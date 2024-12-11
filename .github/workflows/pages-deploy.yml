@@ -17,14 +17,16 @@ jobs:
     - name: Install ruby-install
       run: |
         sudo apt-get update
-        sudo apt-get install -y ruby-install
+        sudo apt-get install -y curl
+        curl -sSL https://github.com/ruby-install/ruby-install/archive/master.tar.gz | tar xz
+        sudo mv ruby-install-master/bin/ruby-install /usr/local/bin/
 
     # Paso 2: Instalar Ruby y RubyGems
-    - name: Install Ruby and RubyGems
+    - name: Install Ruby
       run: |
-        ruby-install ruby 3.1.6  # Instala Ruby 3.1.6 (o la versión que necesites)
+        ruby-install ruby 3.1.6  # Instalar Ruby 3.1.6 (o la versión que necesites)
         export PATH="$HOME/.rubies/ruby-3.1.6/bin:$PATH"
-        gem install bundler  # Instala la última versión de Bundler
+        gem install bundler  # Instalar Bundler
 
     # Paso 3: Eliminar Gemfile.lock
     - name: Remove Gemfile.lock
