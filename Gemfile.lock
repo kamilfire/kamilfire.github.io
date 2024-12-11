@@ -153,10 +153,9 @@ PLATFORMS
   arm64-darwin
   x86_64-darwin
   x86_64-linux
-  bundle lock --add-platform x86_64-linux
-
 
 DEPENDENCIES
+  ffi (~> 1.15)
   html-proofer (~> 5.0)
   jekyll (~> 4.3.0)
   jekyll-theme-chirpy

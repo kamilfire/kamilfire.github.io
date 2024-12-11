@@ -3,6 +3,7 @@
 source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3.0"
+gem "ffi", "~> 1.15"
 gem "jekyll-theme-chirpy"  # Cambia esta línea si antes tenía path: "."
 gem "html-proofer", "~> 5.0"
 gem "tzinfo", ">= 1", "< 3"
