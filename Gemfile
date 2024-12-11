@@ -7,7 +7,8 @@ source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3.0"
 gem "github-pages", group: :jekyll_plugins  # Asegúrate de incluir esta gema si usas GitHub Pages
-gem "jekyll-theme-chirpy"  # Si usas el tema Chirpy
+gem "jekyll-theme-chirpy"
+
 
 gem "html-proofer", "~> 5.0", group: :test
 
