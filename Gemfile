@@ -3,9 +3,12 @@
 source "https://rubygems.org"
 
 gemspec
-gem install bundler
-gem "github-pages", group: :jekyll_plugins
-gem "jekyll-theme-chirpy"
+source "https://rubygems.org"
+
+gem "jekyll", "~> 4.3.0"
+gem "github-pages", group: :jekyll_plugins  # Asegúrate de incluir esta gema si usas GitHub Pages
+gem "jekyll-theme-chirpy"  # Si usas el tema Chirpy
+
 gem "html-proofer", "~> 5.0", group: :test
 
 platforms :mingw, :x64_mingw, :mswin, :jruby do
