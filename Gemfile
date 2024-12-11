@@ -5,6 +5,7 @@ source "https://rubygems.org"
 gemspec
 
 
+gem "jekyll", "~> 4.3.0"  # Versión de Jekyll
 
 gem "html-proofer", "~> 5.0", group: :test
 
