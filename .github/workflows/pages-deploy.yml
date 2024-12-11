@@ -13,35 +13,31 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Paso 1: Instalar ruby-install
-    - name: Install ruby-install
+    # Paso 1: Instalar RVM y Ruby
+    - name: Install RVM and Ruby
       run: |
         sudo apt-get update
         sudo apt-get install -y curl
-        curl -sSL https://github.com/ruby-install/ruby-install/archive/master.tar.gz | tar xz
-        sudo mv ruby-install-master/bin/ruby-install /usr/local/bin/
-
-    # Paso 2: Instalar Ruby y RubyGems
-    - name: Install Ruby
-      run: |
-        ruby-install ruby 3.1.6  # Instalar Ruby 3.1.6 (o la versión que necesites)
-        export PATH="$HOME/.rubies/ruby-3.1.6/bin:$PATH"
+        curl -sSL https://get.rvm.io | bash -s stable
+        source ~/.rvm/scripts/rvm
+        rvm install 3.1.6  # Instalar Ruby 3.1.6 (o la versión que necesites)
+        rvm use 3.1.6 --default
         gem install bundler  # Instalar Bundler
 
-    # Paso 3: Eliminar Gemfile.lock
+    # Paso 2: Eliminar Gemfile.lock
     - name: Remove Gemfile.lock
-      run: rm -f Gemfile.lock  # Elimina el archivo Gemfile.lock
+      run: rm -f Gemfile.lock
 
-    # Paso 4: Instalar dependencias
+    # Paso 3: Instalar dependencias
     - name: Install dependencies
       run: bundle install  # Reinstala las gemas y crea un nuevo Gemfile.lock
 
-    # Paso 5: Construir el sitio Jekyll
+    # Paso 4: Construir el sitio Jekyll
     - name: Build Jekyll site
       run: |
         JEKYLL_ENV=production bundle exec jekyll build
 
-    # Paso 6: Desplegar el sitio en GitHub Pages
+    # Paso 5: Desplegar el sitio en GitHub Pages
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
