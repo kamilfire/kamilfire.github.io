@@ -3,7 +3,7 @@ name: Deploy Jekyll site to GitHub Pages
 on:
   push:
     branches:
-      - main  # Cambia "main" si tu rama principal tiene otro nombre
+      - main  # Cambia esto si tu rama principal tiene otro nombre
 
 jobs:
   build:
@@ -13,24 +13,29 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    # Paso 1: Actualizar RubyGems
+    - name: Update RubyGems
+      run: gem update --system
+
+    # Paso 2: Instalar Bundler
+    - name: Install Bundler
+      run: gem install bundler
+
+    # Paso 3: Eliminar Gemfile.lock
     - name: Remove Gemfile.lock
-      run: rm -f Gemfile.lock  # Elimina Gemfile.lock
+      run: rm -f Gemfile.lock  # Elimina el archivo Gemfile.lock
 
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: 3.1  # Asegúrate de usar la versión correcta
-        bundler-cache: true
-
+    # Paso 4: Instalar dependencias
     - name: Install dependencies
       run: |
-        gem install bundler
-        bundle install  # Reinstala las gemas
+        bundle install  # Reinstala las gemas y crea un nuevo Gemfile.lock
 
+    # Paso 5: Construir el sitio Jekyll
     - name: Build Jekyll site
       run: |
         JEKYLL_ENV=production bundle exec jekyll build
 
+    # Paso 6: Desplegar el sitio en GitHub Pages
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
