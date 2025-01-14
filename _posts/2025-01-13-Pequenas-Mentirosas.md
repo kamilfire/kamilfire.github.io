@@ -43,7 +43,7 @@ nos hacemos usuario spencer y listamos los servicios con `sudo -l`
 
 buscamos en gtfobins como escalar privilegios en python3 
 
-![[Pasted image 20250113215954.png]](/imagenes/Pasted%20image%2020250113215964.png)
+![[Pasted image 20250113215954.png]](/imagenes/Pasted%20image%2020250113215954.png)
 
 ejecutamos `sudo /usr/bin/python3 -c 'import os; os.system("/bin/sh")'` y nos hacemos root verificamos con `whoami` 
 
