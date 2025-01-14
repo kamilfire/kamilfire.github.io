@@ -7,7 +7,7 @@ categories:
   - DockerLabs
 tags:
   - ciber
-render_with_liquid:false
+render_with_liquid:
 ---
 Iniciamos la Maquina 
 
